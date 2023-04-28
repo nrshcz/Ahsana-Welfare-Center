@@ -8468,13 +8468,13 @@ h1, h2, h3, h4, h5,
           display: none; } }
   .ftco-navbar-light .navbar-nav > .nav-item.cta > a {
     color: #fff;
-    border: 1px solid #fd645b;
+    border: 1px solid #ff6987;
     padding-top: .5rem;
     padding-bottom: .5rem;
     padding-left: 18px;
     padding-right: 18px;
     margin-top: 4px;
-    background: #fd645b;
+    background: #ff6987;
     -webkit-border-radius: 40px;
     -moz-border-radius: 40px;
     -ms-border-radius: 40px;
@@ -8483,11 +8483,11 @@ h1, h2, h3, h4, h5,
       display: inline-block;
       color: #fff; }
     .ftco-navbar-light .navbar-nav > .nav-item.cta > a:hover {
-      background: #fd645b;
-      border: 1px solid #fd645b; }
+      background: #ff6987;
+      border: 1px solid #ff6987; }
   .ftco-navbar-light .navbar-nav > .nav-item.cta.cta-colored a {
-    border: 1px solid #fd645b;
-    background: #fd645b !important; }
+    border: 1px solid #ff6987;
+    background: #ff6987 !important; }
   .ftco-navbar-light .navbar-nav > .nav-item.active > a {
     color: #eec857; }
   @media (max-width: 991.98px) {
@@ -8662,8 +8662,8 @@ h1, h2, h3, h4, h5,
         .hero-wrap .slider-text h1 {
           font-size: 40px; } }
       .hero-wrap .slider-text h1 span {
-        border: 2px dashed #fd645b;
-        color: #fd645b;
+        border: 2px dashed #ff6987;
+        color: #ff6987;
         padding: 0 5px; }
     .hero-wrap .slider-text .subheading {
       font-size: 15px;
@@ -8879,10 +8879,10 @@ h1, h2, h3, h4, h5,
   background: #eec857 !important; }
 
 .bg-secondary {
-  background: #fd645b !important; }
+  background: #ff6987 !important; }
 
 .bg-tertiary {
-  background: #4c7bcb !important; }
+  background: #40b1d6 !important; }
 
 .bg-quarternary {
   background: #18a577 !important; }
@@ -9067,11 +9067,11 @@ h1, h2, h3, h4, h5,
       .services .img.border-1 .icon span {
         color: #eec857; }
     .services .img.border-2:after {
-      background: #fd645b; }
+      background: #ff6987; }
     .services .img.border-2 .icon {
-      border: 4px solid #fd645b; }
+      border: 4px solid #ff6987; }
       .services .img.border-2 .icon span {
-        color: #fd645b; }
+        color: #ff6987; }
     .services .img.border-3:after {
       background: #4c7bcb; }
     .services .img.border-3 .icon {
@@ -9100,7 +9100,7 @@ h1, h2, h3, h4, h5,
     .services-2 .icon.icon-1 {
       background: #eec857; }
     .services-2 .icon.icon-2 {
-      background: #fd645b; }
+      background: #ff6987; }
     .services-2 .icon.icon-3 {
       background: #4c7bcb; }
     .services-2 .icon.icon-4 {
@@ -9160,7 +9160,7 @@ h1, h2, h3, h4, h5,
     color: #000000; }
     .causes .goal p span {
       font-weight: 600;
-      color: #fd645b; }
+      color: #ff6987; }
   .causes .btn-light:hover {
     background: #eec857 !important;
     color: #000000 !important;
@@ -9168,7 +9168,7 @@ h1, h2, h3, h4, h5,
   .causes:hover .text {
     background: #fff5ed; }
     .causes:hover .text:after {
-      background: #fd645b;
+      background: #ff6987;
       bottom: -5px;
       height: 5px;
       border-radius: 0 0 5px 5px; }
@@ -9198,7 +9198,7 @@ h1, h2, h3, h4, h5,
   position: relative;
   padding: 5em 0;
   background: #4c7bcb;
-  background: url(../images/moroccan-flower-dark.png); }
+  background: url(../images/pattern.jpg); }
   @media (max-width: 1199.98px) {
     .ftco-counter {
       background-position: center center !important; } }
@@ -9217,7 +9217,7 @@ h1, h2, h3, h4, h5,
       line-height: 1;
       font-weight: 800;
       font-size: 40px;
-      color: #fd645b;
+      color:  #e1f7ee;
       display: block;
       margin-bottom: 10px; }
     .ftco-counter .text span {
@@ -9277,7 +9277,7 @@ textarea.form-control {
     border-radius: 50%;
     background: #fff5ed; }
     .wrap-about .block-18 .icon span {
-      color: #fd645b;
+      color: #ff6987;
       font-size: 34px; }
   .wrap-about .block-18 .desc {
     width: calc(100% - 80px);
@@ -9292,7 +9292,7 @@ textarea.form-control {
     line-height: 1;
     font-weight: 700;
     font-size: 30px;
-    color: #fd645b;
+    color: #ff6987;
     display: block;
     margin-bottom: 4px; }
   .wrap-about .text span {
@@ -9305,13 +9305,13 @@ textarea.form-control {
 
 .donation-wrap {
   width: 100%;
-  background: url(../images/moroccan-flower-dark.png);
+  background: url(../images/pattern.jpg);
   border-radius: 10px 10px 0px 0; }
   @media (min-width: 992px) {
     .donation-wrap {
       margin-top: -113px; } }
   .donation-wrap .total-donate {
-    background: #fd645b;
+    background: #ff6987;
     padding: 25px 40px;
     border-radius: 10px 10px 0px 0;
     z-index: 0;
@@ -9409,7 +9409,7 @@ textarea.form-control {
   position: absolute;
   opacity: 0; }
   .form-radio input[type="radio"]:checked ~ .fill-control-description {
-    color: #fd645b; }
+    color: #ff6987; }
   .form-radio input[type="radio"]:disabled ~ .fill-control-description {
     color: white; }
 
@@ -9429,7 +9429,7 @@ textarea.form-control {
   background-color: transparent; }
 
 .form-radio .radio input:checked ~ .checkmark {
-  border: 2px solid #fd645b;
+  border: 2px solid #ff6987;
   -webkit-transition: .01s;
   -o-transition: .01s;
   transition: .01s; }
@@ -9441,7 +9441,7 @@ textarea.form-control {
 
 .form-radio .radio input:checked ~ .checkmark:after {
   display: block;
-  border: 1px solid #fd645b; }
+  border: 1px solid #ff6987; }
 
 .form-radio .radio .checkmark:after {
   top: 1px;
@@ -9449,7 +9449,7 @@ textarea.form-control {
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  background: #fd645b; }
+  background: #ff6987; }
 
 .form-radio .radio input:checked.checkmark {
   border: 2px solid #eec857 !important; }
@@ -9516,7 +9516,7 @@ textarea.form-control {
       color: rgba(255, 255, 255, 0.4); }
   .footer .ftco-footer-social li a {
     background: rgba(255, 255, 255, 0.1);
-    color: #18a577; }
+    color: #ff6987; }
 
 .ftco-footer-social li {
   list-style: none;
@@ -9574,7 +9574,7 @@ textarea.form-control {
 .heading-section h2 {
   font-size: 40px;
   font-weight: 800;
-  color: #fd645b;
+  color: #28a745;
   line-height: 1.3; }
   @media (max-width: 767.98px) {
     .heading-section h2 {
@@ -9599,7 +9599,7 @@ textarea.form-control {
 
 .testimony-section {
   position: relative;
-  background: #2e579d; }
+  background:#40b1d6; }
   .testimony-section .owl-carousel {
     margin: 0; }
   .testimony-section .owl-carousel .owl-stage-outer {
@@ -9690,7 +9690,7 @@ textarea.form-control {
     opacity: 1;
     width: 40px;
     height: 40px;
-    background: #fd645b;
+    background:  #28a745;
     border-radius: 50%; }
     .testimony-wrap .quote i {
       font-size: 20px;
@@ -9699,12 +9699,12 @@ textarea.form-control {
     font-weight: 600;
     font-size: 19px;
     margin-bottom: 0;
-    color: #fd645b !important; }
+    color: #ff6987 !important; }
   .testimony-wrap .rate {
     margin-bottom: 0; }
     .testimony-wrap .rate span {
       font-size: 12px;
-      color: #fd645b; }
+      color: #ff6987; }
 
 .volunteer {
   width: 100%;
@@ -9736,7 +9736,7 @@ textarea.form-control {
     .volunteer .text.text-1 {
       background: #eec857; }
     .volunteer .text.text-2 {
-      background: #fd645b; }
+      background: #ff6987; }
     .volunteer .text.text-3 {
       background: #4c7bcb; }
     .volunteer .text.text-4 {
@@ -9845,12 +9845,12 @@ textarea.form-control {
   .blog-entry:hover .text {
     background: #fff5ed; }
     .blog-entry:hover .text:after {
-      background: #fd645b;
+      background: #ff6987;
       bottom: -5px;
       height: 5px;
       border-radius: 0 0 5px 5px; }
     .blog-entry:hover .text .btn-outline-secondary {
-      background: #fd645b;
+      background: #ff6987;
       color: #fff; }
 
 .block-23 ul {
@@ -9918,7 +9918,7 @@ textarea.form-control {
       display: block;
       font-size: 16px; }
     .dbox p a {
-      color: #fd645b; }
+      color: #ff6987; }
   .dbox .icon {
     width: 100px;
     height: 100px;
