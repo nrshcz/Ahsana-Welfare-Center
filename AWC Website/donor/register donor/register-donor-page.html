@@ -89,17 +89,21 @@
                             <input type="text" name="postcode" id="postcode">
                         </div>
                         <div class="form-group">
-                            <label for="birth_date">Date Of Birth:</label>
+                            <label for="birth_date">Date Of Birth :</label>
                             <input type="date" name="birth_date" id="birth_date">
                         </div>
                         
                         <div class="form-group">
-                            <label for="email">Email:</label>
+                            <label for="email">Email :</label>
                             <input type="email" name="email" id="email" />
                         </div>
                         <div class="form-group">
-                            <label for="password">Password:</label>
+                            <label for="password">Password :</label>
                             <input type="password" name="password" id="password" />
+                        </div>
+                        <div class="form-group">
+                            <label for="phoneNum">Phone Number :</label>
+                            <input type="text" name="phoneNum" id="phoneNum" />
                         </div>
                         
                        
@@ -117,6 +121,9 @@
     <!-- JS -->
      <!-- <script src="vendor/jquery/jquery.min.js"></script> -->
     <!-- <script src="js/main.js"></script> -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/9.21.0/firebase.js"></script> -->
+    <!-- <script src="main.js"></script> -->
+
 </body>
 
 <script type="module">
@@ -130,14 +137,22 @@
   
     // Your web app's Firebase configuration
     const firebaseConfig = {
-      apiKey: "AIzaSyAnRXDaONlj8ebUzJh-8veX1GtgI9IF3Hs",
-      authDomain: "ahsana-welfare-center-52143.firebaseapp.com",
-      databaseURL: "https://ahsana-welfare-center-52143-default-rtdb.firebaseio.com",
-      projectId: "ahsana-welfare-center-52143",
-      storageBucket: "ahsana-welfare-center-52143.appspot.com",
-      messagingSenderId: "52579977535",
-      appId: "1:52579977535:web:d259c9b4952431c5daab8a"
-    };
+
+        apiKey: "AIzaSyAnRXDaONlj8ebUzJh-8veX1GtgI9IF3Hs",
+      
+        authDomain: "ahsana-welfare-center-52143.firebaseapp.com",
+      
+        databaseURL: "https://ahsana-welfare-center-52143-default-rtdb.firebaseio.com",
+      
+        projectId: "ahsana-welfare-center-52143",
+      
+        storageBucket: "ahsana-welfare-center-52143.appspot.com",
+      
+        messagingSenderId: "52579977535",
+      
+        appId: "1:52579977535:web:d259c9b4952431c5daab8a"
+      
+      };
   
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
@@ -179,6 +194,10 @@
 
 
     })
+
+   
+
+
 
   </script>
 
