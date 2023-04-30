@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign Up Form by Colorlib</title>
+    <title>Sign Up for Ahsana</title>
 
     <!-- Font Icon -->
     <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
@@ -22,14 +22,16 @@
                 </div>
                 <div class="signup-form">
                     <form method="POST" class="register-form" id="register-form">
-                        <h2>student registration form</h2>
+                        <h2>Donor Registration</h2>
                         <div class="form-row">
+
+                            
                             <div class="form-group">
-                                <label for="name">Name :</label>
+                                <label for="name">First Name :</label>
                                 <input type="text" name="name" id="name" required/>
                             </div>
                             <div class="form-group">
-                                <label for="father_name">Father Name :</label>
+                                <label for="father_name">Last Name :</label>
                                 <input type="text" name="father_name" id="father_name" required/>
                             </div>
                         </div>
@@ -56,48 +58,50 @@
                                 <div class="form-select">
                                     <select name="state" id="state">
                                         <option value=""></option>
-                                        <option value="us">America</option>
-                                        <option value="uk">English</option>
+                                        <option value="us">Kuala Lumpur</option>
+                                        <option value="uk">Johor</option>
+                                        <option value="uk">Kedah</option>
+                                        <option value="uk">Kelantan</option>
+                                        <option value="uk">Malacca</option>
+                                        <option value="uk">Negeri Sembilan</option>
+                                        <option value="uk">Pahang</option>
+                                        <option value="uk">Penang</option>
+                                        <option value="uk">Perak</option>
+                                        <option value="uk">Perlis</option>
+                                        <option value="uk">Sabah</option>
+                                        <option value="uk">Sarawak</option>
+                                        <option value="uk">Selangor</option>
+                                        <option value="uk">Terengganu</option>
+                                        <option value="uk">Labuan</option>
+                                        <option value="uk">Putrajaya</option>
                                     </select>
                                     <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="city">City :</label>
-                                <div class="form-select">
-                                    <select name="city" id="city">
-                                        <option value=""></option>
-                                        <option value="losangeles">Los Angeles</option>
-                                        <option value="washington">Washington</option>
-                                    </select>
-                                    <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
-                                </div>
+                                <label for="name">City :</label>
+                                <input type="text" name="city" id="city" required/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="birth_date">DOB :</label>
+                            <label for="Postcode">Postcode :</label>
+                            <input type="text" name="postcode" id="postcode">
+                        </div>
+                        <div class="form-group">
+                            <label for="birth_date">Date Of Birth:</label>
                             <input type="text" name="birth_date" id="birth_date">
                         </div>
+                        
                         <div class="form-group">
-                            <label for="pincode">Pincode :</label>
-                            <input type="text" name="pincode" id="pincode">
-                        </div>
-                        <div class="form-group">
-                            <label for="course">Course :</label>
-                            <div class="form-select">
-                                <select name="course" id="course">
-                                    <option value=""></option>
-                                    <option value="computer">Computer Operator & Pragramming Assistant</option>
-                                    <option value="desiger">Designer</option>
-                                    <option value="marketing">Marketing</option>
-                                </select>
-                                <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email ID :</label>
+                            <label for="email">Email:</label>
                             <input type="email" name="email" id="email" />
                         </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" name="password" id="password" />
+                        </div>
+                        
+                       
                         <div class="form-submit">
                             <input type="submit" value="Reset All" class="submit" name="reset" id="reset" />
                             <input type="submit" value="Submit Form" class="submit" name="submit" id="submit" />
