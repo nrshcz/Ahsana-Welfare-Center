@@ -237,7 +237,7 @@
         var birth_date = $('#birth_date').val();
         var phoneNum = $('#phoneNum').val();
         var gender = $('input[name="gender"]:checked').val();
-        var donor = "admin";
+        var role = "admin";
 
         const app = initializeApp(firebaseConfig);
         // const database = getDatabase(app);
@@ -251,7 +251,7 @@
             // Signed in 
             const user = userCredential.user;
 
-            set(ref(db, 'adminregistration/' + user.uid), {
+            set(ref(db, 'admins/' + user.uid), {
                 email: email,
                 firstname: firstname,
                 lastname: lastname,
@@ -262,7 +262,7 @@
                 birth_date: birth_date,
                 phone: phoneNum,
                 gender: gender,
-                role: donor,
+                role: role,
             }).then(() => {
               alert('Successfully register new admin account');
               window.location.reload();
