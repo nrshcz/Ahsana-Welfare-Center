@@ -12,6 +12,13 @@
 
     <!-- Main css -->
     <link rel="stylesheet" href="css/style.css">
+    <style type="text/css">
+        .errArea label{
+            color: #bf0404;
+            font-size: 11px;
+            font-weight: 500;
+        }
+    </style>
 </head>
 <body>
 
@@ -29,26 +36,29 @@
                             
                             <div class="form-group">
                                 <label for="name">First Name :</label>
-                                <input type="text" name="name" id="name"/>
+                                <input type="text" name="firstname" id="firstname"/>
+                                <div class="errArea"></div>
                             </div>
                             <div class="form-group">
                                 <label for="father_name">Last Name :</label>
-                                <input type="text" name="father_name" id="father_name"/>
+                                <input type="text" name="lastname" id="lastname"/>
+                                <div class="errArea"></div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="address">Address :</label>
                             <input type="text" name="address" id="address"/>
+                            <div class="errArea"></div>
                         </div>
                         <div class="form-radio">
                             <label for="gender" class="radio-label">Gender :</label>
                             <div class="form-radio-item">
-                                <input type="radio" name="gender" id="male" checked>
+                                <input type="radio" name="gender" id="male" checked value="male">
                                 <label for="male">Male</label>
                                 <span class="check"></span>
                             </div>
                             <div class="form-radio-item">
-                                <input type="radio" name="gender" id="female">
+                                <input type="radio" name="gender" id="female" value="female">
                                 <label for="female">Female</label>
                                 <span class="check"></span>
                             </div>
@@ -58,7 +68,6 @@
                                 <label for="state">State :</label>
                                 <div class="form-select">
                                     <select name="state" id="state">
-                                        <option value=""></option>
                                         <option value="kl">Kuala Lumpur</option>
                                         <option value="jr">Johor</option>
                                         <option value="kh">Kedah</option>
@@ -82,30 +91,35 @@
                             <div class="form-group">
                                 <label for="name">City :</label>
                                 <input type="text" name="city" id="city"/>
+                                <div class="errArea"></div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="Postcode">Postcode :</label>
                             <input type="text" name="postcode" id="postcode">
+                            <div class="errArea"></div>
                         </div>
                         <div class="form-group">
                             <label for="birth_date">Date Of Birth :</label>
                             <input type="date" name="birth_date" id="birth_date">
+                            <div class="errArea"></div>
                         </div>
                         
                         <div class="form-group">
                             <label for="email">Email :</label>
                             <input type="email" name="email" id="email" />
+                            <div class="errArea"></div>
                         </div>
                         <div class="form-group">
                             <label for="password">Password :</label>
                             <input type="password" name="password" id="password" />
+                            <div class="errArea"></div>
                         </div>
                         <div class="form-group">
                             <label for="phoneNum">Phone Number :</label>
                             <input type="text" name="phoneNum" id="phoneNum" />
+                            <div class="errArea"></div>
                         </div>
-                        
                         
                        
                         <div class="form-submit">
@@ -120,14 +134,18 @@
     </div>
 
     <!-- JS -->
-     <!-- <script src="vendor/jquery/jquery.min.js"></script> -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/jquery/jquery-validate.min.js"></script>
     <!-- <script src="js/main.js"></script> -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/9.21.0/firebase.js"></script> -->
+    <!-- <script src="main.js"></script> -->
+
 </body>
 
 <script type="module">
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
-    // import { getDatabase } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
+    import { getDatabase, set, ref} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
     import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
 
     // TODO: Add SDKs for Firebase products that you want to use
@@ -135,55 +153,141 @@
   
     // Your web app's Firebase configuration
     const firebaseConfig = {
-      apiKey: "AIzaSyAnRXDaONlj8ebUzJh-8veX1GtgI9IF3Hs",
-      authDomain: "ahsana-welfare-center-52143.firebaseapp.com",
-      databaseURL: "https://ahsana-welfare-center-52143-default-rtdb.firebaseio.com",
-      projectId: "ahsana-welfare-center-52143",
-      storageBucket: "ahsana-welfare-center-52143.appspot.com",
-      messagingSenderId: "52579977535",
-      appId: "1:52579977535:web:d259c9b4952431c5daab8a"
-    };
+
+        apiKey: "AIzaSyAnRXDaONlj8ebUzJh-8veX1GtgI9IF3Hs",
+      
+        authDomain: "ahsana-welfare-center-52143.firebaseapp.com",
+      
+        databaseURL: "https://ahsana-welfare-center-52143-default-rtdb.firebaseio.com",
+      
+        projectId: "ahsana-welfare-center-52143",
+      
+        storageBucket: "ahsana-welfare-center-52143.appspot.com",
+      
+        messagingSenderId: "52579977535",
+      
+        appId: "1:52579977535:web:d259c9b4952431c5daab8a"
+      
+      };
   
     // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    // const database = getDatabase(app);
-    const auth = getAuth(app);
-
-    document.getElementById("signUp").addEventListener('click',function() {
-
-        const email = document.getElementById("email").value
-       const password = document.getElementById("password").value
-       // var name = document.getElementById('name').value;
-       // var father_name = document.getElementById('father_name').value;
-       // var city = document.getElementById('city').value;
-        //var postcode = document.getElementById('postcode').value;
-       // var birth_date = document.getElementById('birth_date').value;
-       // var female = document.getElementById('female').value;
-       // var male = document.getElementById('male').value;
-       // var state = document.getElementById('state').value;
-        
 
 
-    createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-    
-    // ...
-    console.log("created")
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
+    $('document').ready(function(){
 
-    
-    // ..
-    console.log(errorCode + errorMessage);
-  });
+        $(".register-form").validate({
+            rules:{
+                firstname:{
+                    required: true
+                },
+                lastname:{
+                    required:true
+                },
+                address:{
+                    required:true
+                },
+                city:{
+                    required:true
+                },
+                postcode:{
+                    required:true
+                }
+                ,
+                birth_date: {
+                    required: true
+                },
+                email: {
+                    required: true,
+                    email: true
+                },
+                password: {
+                    required: true,
+                },
+                phoneNum: {
+                    required: true,
+                }
+            },
+            errorPlacement: function (error, element) {
+                error.appendTo(element.closest(".form-group").find(".errArea"));
+            }
+        });
+
+        $('#signUp').on('click', function(){
+
+            if($(".register-form").valid()){
+                registerAcc();
+            }
+
+        });
+
+
+    });
+
+    function registerAcc(){
+
+        $('#signUp').prop('disabled', true);
+        var email = $('#email').val();
+        var password = $('#password').val();
+        var firstname = $('#firstname').val();
+        var lastname = $('#lastname').val();
+        var address = $('#address').val();
+        var state = $('#state option:selected').val();
+        var city = $('#city').val();
+        var postcode = $('#postcode').val();
+        var birth_date = $('#birth_date').val();
+        var phoneNum = $('#phoneNum').val();
+        var gender = $('input[name="gender"]:checked').val();
+        var donor = "admin";
+
+        const app = initializeApp(firebaseConfig);
+        // const database = getDatabase(app);
+        const auth = getAuth(app);
+        const db = getDatabase(app);
 
 
 
-    })
+        createUserWithEmailAndPassword(auth, email, password)
+          .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+
+            set(ref(db, 'donors/' + user.uid), {
+                email: email,
+                firstname: firstname,
+                lastname: lastname,
+                address: address,
+                state: state,
+                city: city, 
+                postcode: postcode,
+                birth_date: birth_date,
+                phone: phoneNum,
+                gender: gender,
+                role: donor,
+            }).then(() => {
+              alert('Successfully register new admin account');
+              window.location.reload();
+            })
+            .catch((err) => {
+              alert(err.message);
+            });
+
+            // alert('Successfully register new donor account');
+            // window.location.reload();
+            // console.log("created");
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+
+            
+            // ..
+            alert(errorCode + errorMessage);
+          });
+
+
+
+    }
+
 
   </script>
 
