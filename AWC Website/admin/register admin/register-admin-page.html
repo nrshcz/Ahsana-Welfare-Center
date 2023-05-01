@@ -251,7 +251,7 @@
             // Signed in 
             const user = userCredential.user;
 
-            set(ref(db, 'donors/' + user.uid), {
+            set(ref(db, 'adminregistration/' + user.uid), {
                 email: email,
                 firstname: firstname,
                 lastname: lastname,
