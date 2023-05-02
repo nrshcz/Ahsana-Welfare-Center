@@ -1,6 +1,6 @@
 body {
   font-family: "Karla", sans-serif;
-  background-color: #d0d0ce;
+  background-color: #f0c375;
   min-height: 100vh; }
 
 .brand-wrapper {
@@ -52,7 +52,7 @@ body {
       color: #919aa3; }
   .login-card .login-btn {
     padding: 13px 20px 12px;
-    background-color: #000;
+    background-color: #3abaac;
     border-radius: 4px;
     font-size: 17px;
     font-weight: bold;

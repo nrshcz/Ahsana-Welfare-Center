@@ -250,7 +250,7 @@ body {
   line-height: 1.8;
   color: #222;
   font-weight: 400;
-  background: #282828;
+  background: #3c7cdb;
   padding: 90px 0; }
 
 .container {
@@ -355,9 +355,9 @@ input[type=radio] {
   position: absolute;
   visibility: hidden; }
   input[type=radio]:checked ~ .check {
-    border: 1px solid #ff6801; }
+    border: 1px solid #f06ead; }
   input[type=radio]:checked ~ .check::before {
-    background: #ff6801; }
+    background: #f06ead; }
 
 .form-select {
   position: relative; }
@@ -425,7 +425,7 @@ select {
   color: #999;
   margin-right: 8px; }
   #reset:hover {
-    background: #ff6801;
+    background: #f06ead;
     color: #fff; }
 
 #submit {
