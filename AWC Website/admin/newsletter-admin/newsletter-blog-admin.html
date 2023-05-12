@@ -84,15 +84,19 @@
 <section class="ftco-section ftco-degree-bg">
   <div class="container">
     <div class="row">
-      <div class="col-lg-8 ftco-animate">
-       <p>
+      <div class="col-lg-8 ftco-animate" id="blogcontent">
+
+        <p>Loading...</p>
+       <!-- <p>
         <h2 class="mb-3">Batik painting activity on weekend</h2>
         <p>Published at: 7 May 2023</p>
         <img src="images/activity1.jpg" alt="" class="img-fluid">
       </p>
       
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, eius mollitia suscipit, quisquam doloremque distinctio perferendis et doloribus unde architecto optio laboriosam porro adipisci sapiente officiis nemo accusamus ad praesentium? Esse minima nisi et. Dolore perferendis, enim praesentium omnis, iste doloremque quia officia optio deserunt molestiae voluptates soluta architecto tempora.</p>
-      <p>Molestiae cupiditate inventore animi, maxime sapiente optio, illo est nemo veritatis repellat sunt doloribus nesciunt! Minima laborum magni reiciendis qui voluptate quisquam voluptatem soluta illo eum ullam incidunt rem assumenda eveniet eaque sequi deleniti tenetur dolore amet fugit perspiciatis ipsa, odit. Nesciunt dolor minima esse vero ut ea, repudiandae suscipit!</p>
+      <p>Molestiae cupiditate inventore animi, maxime sapiente optio, illo est nemo veritatis repellat sunt doloribus nesciunt! Minima laborum magni reiciendis qui voluptate quisquam voluptatem soluta illo eum ullam incidunt rem assumenda eveniet eaque sequi deleniti tenetur dolore amet fugit perspiciatis ipsa, odit. Nesciunt dolor minima esse vero ut ea, repudiandae suscipit!</p> -->
+
+
       <!-- <h2 class="mb-3 mt-5">#2. Creative WordPress Themes</h2>
       <p>Temporibus ad error suscipit exercitationem hic molestiae totam obcaecati rerum, eius aut, in. Exercitationem atque quidem tempora maiores ex architecto voluptatum aut officia doloremque. Error dolore voluptas, omnis molestias odio dignissimos culpa ex earum nisi consequatur quos odit quasi repellat qui officiis reiciendis incidunt hic non? Debitis commodi aut, adipisci.</p>
       <p>
@@ -135,7 +139,7 @@
           </div>
         </form>
       </div>
-      <div class="sidebar-box ftco-animate">
+      <!-- <div class="sidebar-box ftco-animate">
         <div class="categories">
           <h3>Services</h3>
           <li><a href="#">Water </a></li>
@@ -159,7 +163,7 @@
           <a href="#" class="tag-cloud-link">Trips</a>
         </div>
       </div>
-
+ -->
       <div class="sidebar-box ftco-animate" >
         <h3>About Ahsana</h3>
         <p >Ahsana welfare center is a community-based organization that aims to provide assistance and support to individuals and families in need. These centers offer a wide range of services, including food and clothing assistance, counseling and therapy, education and job training, health and medical care, and emergency shelter. The ultimate goal of Ahsana welfare center is to improve the quality of life for people facing difficult circumstances and to promote their well-being and independence. Ahsana welfare center is run by non-profit organizations, and rely heavily on volunteer work and donations to carry out their mission. They play a vital role in helping vulnerable populations and strengthening communities as a whole.</p>
@@ -238,9 +242,65 @@
 <script src="js/owl.carousel.min.js"></script>
 <script src="js/jquery.magnific-popup.min.js"></script>
 <script src="js/scrollax.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-<script src="js/google-map.js"></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> -->
+<!-- <script src="js/google-map.js"></script> -->
 <script src="js/main.js"></script>
+<script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+        import { getDatabase, ref, child, onValue,  push, update, get  } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyAnRXDaONlj8ebUzJh-8veX1GtgI9IF3Hs",
+          authDomain: "ahsana-welfare-center-52143.firebaseapp.com",
+          databaseURL: "https://ahsana-welfare-center-52143-default-rtdb.firebaseio.com",
+          projectId: "ahsana-welfare-center-52143",
+          storageBucket: "ahsana-welfare-center-52143.appspot.com",
+          messagingSenderId: "52579977535",
+          appId: "1:52579977535:web:d259c9b4952431c5daab8a"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const blogid = urlParams.get('id');
+        const month = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+    
+        const dbRef = ref(db);
+        get(child(dbRef, `posts/${blogid}`)).then((snapshot) => {
+          if (snapshot.exists()) {
+            var data = snapshot.val();
+            var dt = new Date(data.postdate);
+
+            var content = `
+                         <p>
+                          <h2 class="mb-3">${data.title}</h2>
+                          <p>Published at: ${dt.getDate()} ${month[dt.getMonth()]} ${dt.getFullYear()}</p>
+                          <img src="${data.imgUrl}" alt="" class="img-fluid">
+                        </p>
+                        
+                        <p>
+                          ${data.desc}
+                        </p>`;
+            $('#blogcontent').html(content);
+            setTimeout(() => { 
+              $('#blogcontent').addClass('fadeInUp ftco-animated');
+            }, 600);
+
+          } else {
+            console.log("No data available");
+          }
+        }).catch((error) => {
+          console.error(error);
+        });
+
+</script>
+
 
 </body>
 </html>

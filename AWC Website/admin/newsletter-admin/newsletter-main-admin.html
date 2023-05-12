@@ -21,6 +21,24 @@
 
   <link rel="stylesheet" href="css/flaticon.css">
   <link rel="stylesheet" href="css/style.css">
+  <style type="text/css">
+
+
+      .blog-entry{
+        position: relative;
+      }
+      .deletebtn, .editbtn{
+          font-size: 24px;
+          border-radius: 100%;
+          padding: 0px;
+          width: 50px;
+          height: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding-left: 2.2px;
+      }
+  </style>
 </head>
 <body>
 
@@ -82,59 +100,41 @@
 </section>
 
 <section class="ftco-section">
-  <div class="container">
-    <div class="row d-flex">
-      <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-        <div class="blog-entry align-self-stretch">
-          <a href="blog-single.html" class="block-20" style="background-image: url('images/activity1.jpg');">
-          </a>
-          <div class="text p-4">
-           <div class="meta mb-2">
-            <div><a href="#">7 May, 2023</a></div>
-           
-          </div>
-          <h3 class="heading"><a href="#">Batik Activity on weekend</a></h3>
-          
-          <p><a href="../newsletter-admin/newsletter-blog-admin.html" class="btn btn-secondary">Read more</a></p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-      <div class="blog-entry align-self-stretch">
-        <a href="blog-single.html" class="block-20" style="background-image: url('images/activity4.jpg');">
-        </a>
-        <div class="text p-4">
-         <div class="meta mb-2">
-          <div><a href="#">July 20, 2020</a></div>
+    <div class="container">
+
+        <div class="row align-items-center justify-content-between">
+
+            <p>NEWSLETTER SECTION</p>
+            <p><a href="add-newsletter-page.html" class="btn btn-secondary">ADD NEW</a></p>
           
         </div>
-        <h3 class="heading"><a href="#">Iftar dinner preparation</a></h3>
-        <p><a href="#" class="btn btn-secondary">Read more</a></p>
-      </div>
+        <div class="row" id="newsletter-content">
+
+            <div>
+               Loading...
+            </div>
+
+            <!-- <div class="col-12 col-md-6 col-lg-4 d-flex ftco-animate">
+
+              <div class="blog-entry align-self-stretch">
+                  <a href="blog-single.html" class="block-20" style="background-image: url('images/activity1.jpg');"></a>
+                  <div class="text p-4">
+                      <div class="meta mb-2">
+                        <div><a href="#">7 May, 2023</a></div>
+                      </div>
+                      <h3 class="heading"><a href="#">Batik Activity on weekend</a></h3>
+                      <p><a href="../newsletter-admin/newsletter-blog-admin.html" class="btn btn-secondary">Read more</a></p>
+                  </div>
+
+              </div>
+
+            </div> -->
+
+        </div>
+       
     </div>
-  </div>
-  
-</div>
-<div class="row mt-5">
-  <p>EDIT NEWSLETTER SECTION</p>
-  <p><br><a href="#" class="btn btn-secondary">ADD</a></p>
-  <p><br><a href="#" class="btn btn-secondary">DELETE</a></p>
-  <!-- <div class="col text-center">
-    <div class="block-27">
-      <ul>
-        <li><a href="#">&lt;</a></li>
-        <li class="active"><span>1</span></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li><a href="#">&gt;</a></li>
-      </ul>
-    </div>
-  </div> -->
-</div>
-</div>
 </section>
+
 
 
 <footer class="footer">
@@ -204,9 +204,128 @@
 <script src="js/owl.carousel.min.js"></script>
 <script src="js/jquery.magnific-popup.min.js"></script>
 <script src="js/scrollax.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-<script src="js/google-map.js"></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> -->
+<!-- <script src="js/google-map.js"></script> -->
 <script src="js/main.js"></script>
+<script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+        import { getDatabase, ref, child, onValue, remove } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
+        import { getStorage, ref as sRef, deleteObject} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-storage.js";
+
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyAnRXDaONlj8ebUzJh-8veX1GtgI9IF3Hs",
+          authDomain: "ahsana-welfare-center-52143.firebaseapp.com",
+          databaseURL: "https://ahsana-welfare-center-52143-default-rtdb.firebaseio.com",
+          projectId: "ahsana-welfare-center-52143",
+          storageBucket: "ahsana-welfare-center-52143.appspot.com",
+          messagingSenderId: "52579977535",
+          appId: "1:52579977535:web:d259c9b4952431c5daab8a"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const storage = getStorage(app);
+        const month = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+
+        const starCountRef = ref(db, 'posts');
+        onValue(starCountRef, (snapshot) => {
+            const data = snapshot.val();
+            var card = "";
+            var newsArr = [];
+            
+            if(data == null){
+                card += `<div>
+                            No Blog Post Yet
+                      </div>`;
+                $('#newsletter-content').html(card);
+                return;
+            }
+
+            for (const [key, value] of Object.entries(data)) {
+                var newsData = data[key];
+
+                var dt = new Date(newsData.postdate);
+                var title = newsData.title;
+                var imgurl = newsData.imgUrl;
+                var imgname = newsData.imgname;
+
+                newsArr.push({'id': key, 'postdate': dt, 'month': month[dt.getMonth()], 'date': dt.getDate(), 'year': dt.getFullYear(), 'imgurl': imgurl, 'title': title, 'imgname': imgname });
+              
+            }
+
+            $(newsArr).each(function(){
+
+
+                card += `<div class="col-12 col-md-6 col-lg-4 d-flex blogcard ftco-animate">
+
+                          <div class="blog-entry align-self-stretch">
+                              
+                              <a href="../newsletter-admin/edit-newsletter-admin.html?id=${this.id}" class="block-20" style="background-image: url('${this.imgurl}');"></a>
+                              <div class="text p-4">
+                                  <div class="meta mb-2">
+                                    <div><a href="#">${this.date} ${this.month}, ${this.year}</a></div>
+                                  </div>
+                                  <h3 class="heading"><a href="#">${this.title}</a></h3>
+                                  <div class="d-flex align-items-center">
+                                    <div><a href="../newsletter-admin/newsletter-blog-admin.html?id=${this.id}" class="btn btn-secondary">Read more</a></div>
+                                    <a class="btn btn-primary editbtn ml-2" href="../newsletter-admin/edit-newsletter-page.html?id=${this.id}">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                    </a>
+                                    <div class="btn btn-danger deletebtn ml-2" data-id="${this.id}">
+                                        <input type="hidden" value="${this.imgname}" id="imgname" />
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    </div>
+                                  </div>
+                              </div>
+
+                          </div>
+
+                        </div>`;
+
+
+            });
+
+            $('#newsletter-content').html(card);
+
+            setTimeout(() => { 
+              $('.blogcard').addClass('fadeInUp ftco-animated');
+            }, 600);
+
+            $('.deletebtn').on('click', function(){
+                  var id = $(this).data('id');
+                  var imgname = $('#imgname').val();
+                  if (confirm("Do confirm to delete?") == true) {
+                        const dbRef = ref(db, "/posts/" + id);
+                        remove(dbRef).then(() => alert("Deleted Successfully"))
+
+                        const desertRef = sRef(storage, `images/${imgname}`);
+                        // Delete the file
+                        deleteObject(desertRef).then(() => {
+                          // File deleted successfully
+                        }).catch((error) => {
+                          // Uh-oh, an error occurred!
+                          console.log(error);
+                        });
+
+
+                  } else {
+                     
+                  }
+            });
+
+        });
+     
+
+
+        
+</script>
 
 </body>
 </html>
