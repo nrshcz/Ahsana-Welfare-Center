@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Newsletter Edit</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="js/summernote/summernote.css">
+  <link rel="stylesheet" href="js/summernote/summernote-bs4.css">
+ 
+  <style>
+    body {
+      font-family: "Inter";
+    }
+
+    label, button {
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    input, textarea {
+      border: 3px solid #eee;
+      padding: .4em 1em;
+      border-radius: 6px;
+    }
+
+    form {
+      display: grid;
+      grid-row-gap: 10px;
+      justify-content: center;
+    }
+
+    button {
+      margin-top: 10px;
+      background: #133EF5;
+      color: #fff;
+      padding: 10px 0;
+      border: 0;
+      border-radius: 6px;
+    }
+
+    #currentimg img{
+      max-width: 250px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="row p-5">
+    <div id="loading">
+       Loading Blog Detail...
+    </div>
+    <div class="col-6 d-none" id="editform">
+      <h4>Edit Blog Detail</h4>
+      <hr />
+      <form action="/submit" method="POST" enctype="multipart/form-data">
+        <label for="newstitle">Blog Title</label>
+        <input type="text" id="newstitle" name="newstitle">
+
+        <label for="newsDate">Publishing Date</label>
+        <input type="date" id="newsDate" name="newsDate">
+
+        <label for="newsDesc">Description</label>
+        <textarea name="newsDesc" id="newsDesc" wrap="hard" ></textarea>
+
+     
+        <input type="hidden" id="oldfile" name="oldfile">
+        <input type="hidden" id="oldurl" name="oldurl">
+
+        <label for="newsphoto">New Photo (Optional)</label>
+        <input type="file" id="photo" name="newsphoto" accept="image/*">
+
+        <label for="newsphoto">Current Photo</label>
+        <div id="currentimg">
+            
+        </div>
+
+        <button type="button" id="update">Update</button>
+      </form>
+    </div>
+  </div>
+</body>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-migrate-3.0.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.easing.1.3.js"></script>
+<script src="js/jquery.waypoints.min.js"></script>
+<script src="js/jquery.stellar.min.js"></script>
+<script src="js/jquery.animateNumber.min.js"></script>
+<script src="js/bootstrap-datepicker.js"></script>
+<script src="js/jquery.timepicker.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/scrollax.min.js"></script>
+<script src="js/summernote/summernote.js"></script>
+<script src="js/summernote/summernote-bs4.js"></script>
+
+
+
+<script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+        import { getDatabase, ref, child, onValue,  push, update, get  } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
+
+        import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-storage.js";
+      
+
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyAnRXDaONlj8ebUzJh-8veX1GtgI9IF3Hs",
+          authDomain: "ahsana-welfare-center-52143.firebaseapp.com",
+          databaseURL: "https://ahsana-welfare-center-52143-default-rtdb.firebaseio.com",
+          projectId: "ahsana-welfare-center-52143",
+          storageBucket: "ahsana-welfare-center-52143.appspot.com",
+          messagingSenderId: "52579977535",
+          appId: "1:52579977535:web:d259c9b4952431c5daab8a"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const storage = getStorage(app);
+
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const blogid = urlParams.get('id');
+
+        const dbRef = ref(db);
+        get(child(dbRef, `posts/${blogid}`)).then((snapshot) => {
+          if (snapshot.exists()) {
+            var data = snapshot.val();
+            $('#newstitle').val(data.title);
+            $('#newsDate').val(data.postdate);
+            $('#currentimg').html(`<img src='${data.imgUrl}' />`);
+            $('#oldfile').val(data.imgname);
+            $('#oldurl').val(data.imgUrl);
+            $('#newsDesc').val(data.desc);
+            $('#newsDesc').summernote();
+
+            $('#editform').removeClass('d-none');
+            $("#loading").addClass('d-none');
+
+          } else {
+            console.log("No data available");
+          }
+        }).catch((error) => {
+          console.error(error);
+        });
+
+
+        document.getElementById("update").addEventListener('click',  function(){
+
+            var checkEmpty = 0;
+            var file = document.querySelector("#photo").files[0];
+            var newsDesc = $('#newsDesc').val();
+            var newsDate = $('#newsDate').val();
+            var newstitle = $('#newstitle').val();
+            var oldfile = $('#oldfile').val();
+            var oldurl = $('#oldurl').val();
+
+
+            if(newstitle == '' || newsDate == '' || newsDesc == ''){
+                checkEmpty = 1;
+            }
+
+            if(checkEmpty == 1){
+               alert('Please fill in all required field');
+               return;
+            }
+
+            $('#update').prop('disabled', true);
+            $('#update').addClass('d-none');
+
+            if(file == undefined){
+
+
+                const postData = {
+                  title: newstitle,
+                  desc: newsDesc,
+                  postdate: newsDate,
+                  imgUrl: oldurl,
+                  imgname: oldfile
+                };
+    
+                const updates = {};
+                updates['/posts/' + blogid] = postData;
+                update(ref(db), updates).then(() => {
+
+                  alert('Data updated successfully!');
+                  window.location.href = "newsletter-main-admin.html";
+
+                })
+                .catch((error) => {
+                    alert(error);
+                     $('#update').prop('disabled', false);
+                });
+
+
+            }else{
+
+                  // const name = +new Date() + "-" + file.name;
+                  const name = oldfile;
+                  const metadata = {
+                     contentType: 'image/*',
+                  };
+
+                  const storageRef = sRef(storage, 'images/' + name);
+                  const uploadTask = uploadBytesResumable(storageRef, file, metadata);
+
+                   uploadTask.on('state_changed',
+                    (snapshot) => {
+                      const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                      console.log('Upload is ' + progress + '% done');
+                      switch (snapshot.state) {
+                        case 'paused':
+                          console.log('Upload is paused');
+                          break;
+                        case 'running':
+                          console.log('Upload is running');
+                          break;
+                      }
+                    }, 
+                    (error) => {
+                     
+                      switch (error.code) {
+                        case 'storage/unauthorized':
+                          // User doesn't have permission to access the object
+                          break;
+                        case 'storage/canceled':
+                          // User canceled the upload
+                          break;
+
+                        // ...
+
+                        case 'storage/unknown':
+                          // Unknown error occurred, inspect error.serverResponse
+                          break;
+                      }
+                    }, 
+                    () => {
+                      // Upload completed successfully, now we can get the download URL
+                      getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+
+                            const postData = {
+                              title: newstitle,
+                              desc: newsDesc,
+                              postdate: newsDate,
+                              imgUrl: downloadURL,
+                              imgname: name
+                            };
+                
+                            const updates = {};
+                            updates['/posts/' + blogid] = postData;
+                            update(ref(db), updates).then(() => {
+
+                              // Data saved successfully!
+                              alert('Data updated successfully!');
+                              window.location.href = "newsletter-main-admin.html";
+
+                            })
+                            .catch((error) => {
+                                alert(error);
+                                 $('#update').prop('disabled', false);
+                                 $('#update').removeClass('d-none');
+                            });
+
+                      });
+                    }
+                  );
+
+
+
+            }
+            
+         
+           
+           
+
+           
+
+
+         });
+
+
+
+        
+</script>
+</html>
