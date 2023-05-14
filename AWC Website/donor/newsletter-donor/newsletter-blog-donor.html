@@ -37,9 +37,9 @@
     <div class="social-media">
      <p class="mb-0 d-flex">
       <a href="https://www.facebook.com/ahsana.org/" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
-							<a href="https://www.youtube.com/@ngoahsanapkakl/featured" class="d-flex align-items-center justify-content-center"><span class="fa fa-youtube"><i class="sr-only">Youtube</i></span></a>
-							<a href="https://instagram.com/ahsanakl_?igshid=YmMyMTA2M2Y=" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
-							<a href="https://www.tiktok.com/@ahsanakl?_t=8c1bbZPcm6E&_r=1" class="d-flex align-items-center justify-content-center"><span class="fa fa-tiktok"><i class="sr-only">TikTok</i></span></a>
+              <a href="https://www.youtube.com/@ngoahsanapkakl/featured" class="d-flex align-items-center justify-content-center"><span class="fa fa-youtube"><i class="sr-only">Youtube</i></span></a>
+              <a href="https://instagram.com/ahsanakl_?igshid=YmMyMTA2M2Y=" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
+              <a href="https://www.tiktok.com/@ahsanakl?_t=8c1bbZPcm6E&_r=1" class="d-flex align-items-center justify-content-center"><span class="fa fa-tiktok"><i class="sr-only">TikTok</i></span></a>
     </p>
   </div>
 </div>
@@ -83,8 +83,8 @@
 <section class="ftco-section ftco-degree-bg">
   <div class="container">
     <div class="row">
-      <div class="col-lg-8 ftco-animate">
-       <p>
+      <div class="col-lg-8 ftco-animate" id="blogcontent">
+       <!-- <p>
         <img src="images/image_1.jpg" alt="" class="img-fluid">
       </p>
       <h2 class="mb-3">It is a long established fact a reader be distracted</h2>
@@ -106,9 +106,9 @@
           <a href="#" class="tag-cloud-link">Tech</a>
           <a href="#" class="tag-cloud-link">Travel</a>
         </div>
-      </div>
+      </div> -->
       
-      <div class="about-author d-flex p-4 bg-light">
+      <!-- <div class="about-author d-flex p-4 bg-light">
         <div class="bio mr-5">
           <img src="images/person_1.jpg" alt="Image placeholder" class="img-fluid mb-4">
         </div>
@@ -116,10 +116,10 @@
           <h3>George Washington</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
         </div>
-      </div>
+      </div> -->
 
 
-      <div class="pt-5 mt-5">
+     <!--  <div class="pt-5 mt-5">
         <h3 class="mb-5">6 Comments</h3>
         <ul class="comment-list">
           <li class="comment">
@@ -201,7 +201,7 @@
             </div>
           </li>
         </ul>
-        <!-- END comment-list -->
+ 
         
         <div class="comment-form-wrap pt-5">
           <h3 class="mb-5">Leave a comment</h3>
@@ -229,7 +229,7 @@
 
           </form>
         </div>
-      </div>
+      </div> -->
 
     </div> <!-- .col-md-8 -->
     <div class="col-lg-4 sidebar pl-lg-5 ftco-animate">
@@ -406,6 +406,61 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 <script src="js/google-map.js"></script>
 <script src="js/main.js"></script>
+<script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+        import { getDatabase, ref, child, onValue,  push, update, get  } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyAnRXDaONlj8ebUzJh-8veX1GtgI9IF3Hs",
+          authDomain: "ahsana-welfare-center-52143.firebaseapp.com",
+          databaseURL: "https://ahsana-welfare-center-52143-default-rtdb.firebaseio.com",
+          projectId: "ahsana-welfare-center-52143",
+          storageBucket: "ahsana-welfare-center-52143.appspot.com",
+          messagingSenderId: "52579977535",
+          appId: "1:52579977535:web:d259c9b4952431c5daab8a"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const blogid = urlParams.get('id');
+        const month = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+    
+        const dbRef = ref(db);
+        get(child(dbRef, `posts/${blogid}`)).then((snapshot) => {
+          if (snapshot.exists()) {
+            var data = snapshot.val();
+            var dt = new Date(data.postdate);
+
+            var content = `
+                         <p>
+                          <h2 class="mb-3">${data.title}</h2>
+                          <p>Published at: ${dt.getDate()} ${month[dt.getMonth()]} ${dt.getFullYear()}</p>
+                          <img src="${data.imgUrl}" alt="" class="img-fluid">
+                        </p>
+                        
+                        <p>
+                          ${data.desc}
+                        </p>`;
+            $('#blogcontent').html(content);
+            setTimeout(() => { 
+              $('#blogcontent').addClass('fadeInUp ftco-animated');
+            }, 600);
+
+          } else {
+            console.log("No data available");
+          }
+        }).catch((error) => {
+          console.error(error);
+        });
+
+</script>
 
 </body>
 </html>
