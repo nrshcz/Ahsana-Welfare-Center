@@ -104,7 +104,7 @@
 
         <div class="row align-items-center justify-content-between">
 
-          <h2 class="mb-4">Newsletter Section Editor</h2>
+            <p>NEWSLETTER SECTION</p>
             <p><a href="add-newsletter-page.html" class="btn btn-secondary">ADD NEW</a></p>
           
         </div>
@@ -114,6 +114,21 @@
                Loading...
             </div>
 
+            <!-- <div class="col-12 col-md-6 col-lg-4 d-flex ftco-animate">
+
+              <div class="blog-entry align-self-stretch">
+                  <a href="blog-single.html" class="block-20" style="background-image: url('images/activity1.jpg');"></a>
+                  <div class="text p-4">
+                      <div class="meta mb-2">
+                        <div><a href="#">7 May, 2023</a></div>
+                      </div>
+                      <h3 class="heading"><a href="#">Batik Activity on weekend</a></h3>
+                      <p><a href="../newsletter-admin/newsletter-blog-admin.html" class="btn btn-secondary">Read more</a></p>
+                  </div>
+
+              </div>
+
+            </div> -->
 
         </div>
        
@@ -129,7 +144,7 @@
         <h2 class="footer-heading">Ahsana Welfare Center</h2>
         <p>Empowering lives, creating hope: Together we can make a difference.</p>
         <ul class="ftco-footer-social p-0">
-        
+          <!-- <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><span class="fa fa-twitter"></span></a></li> -->
           <li class="ftco-animate"><a href="https://www.facebook.com/ahsana.org/" data-toggle="tooltip" data-placement="top" title="Facebook"><span class="fa fa-facebook"></span></a></li>
           <li class="ftco-animate"><a href="https://www.instagram.com/ahsanakl_/" data-toggle="tooltip" data-placement="top" title="Instagram"><span class="fa fa-instagram"></span></a></li>
         </ul>
@@ -189,7 +204,8 @@
 <script src="js/owl.carousel.min.js"></script>
 <script src="js/jquery.magnific-popup.min.js"></script>
 <script src="js/scrollax.min.js"></script>
-
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> -->
+<!-- <script src="js/google-map.js"></script> -->
 <script src="js/main.js"></script>
 <script type="module">
         // Import the functions you need from the SDKs you need
@@ -263,7 +279,7 @@
                                         <i class="fa fa-pencil" aria-hidden="true"></i>
                                     </a>
                                     <div class="btn btn-danger deletebtn ml-2" data-id="${this.id}">
-                                        <input type="hidden" value="${this.imgname}" id="imgname" />
+                                        <input type="hidden" value="${this.imgname}"/>
                                         <i class="fa fa-trash-o" aria-hidden="true"></i>
                                     </div>
                                   </div>
@@ -284,7 +300,9 @@
 
             $('.deletebtn').on('click', function(){
                   var id = $(this).data('id');
-                  var imgname = $('#imgname').val();
+                  var imgname = $(this).children('input').val();
+     
+
                   if (confirm("Do confirm to delete?") == true) {
                         const dbRef = ref(db, "/posts/" + id);
                         remove(dbRef).then(() => alert("Deleted Successfully"))
