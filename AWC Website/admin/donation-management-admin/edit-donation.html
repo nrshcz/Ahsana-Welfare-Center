@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Donation Edit</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="css/nunito-font.css">
+
+    <link rel="stylesheet" href="css/styledonation.css" />
+    <meta name="robots" content="noindex, follow">
+    <script
+        nonce="5d370817-74a1-4a51-b718-e516cc6d50b3">(function (w, d) { !function (bg, bh, bi, bj) { bg[bi] = bg[bi] || {}; bg[bi].executed = []; bg.zaraz = { deferred: [], listeners: [] }; bg.zaraz.q = []; bg.zaraz._f = function (bk) { return function () { var bl = Array.prototype.slice.call(arguments); bg.zaraz.q.push({ m: bk, a: bl }) } }; for (const bm of ["track", "set", "debug"]) bg.zaraz[bm] = bg.zaraz._f(bm); bg.zaraz.init = () => { var bn = bh.getElementsByTagName(bj)[0], bo = bh.createElement(bj), bp = bh.getElementsByTagName("title")[0]; bp && (bg[bi].t = bh.getElementsByTagName("title")[0].text); bg[bi].x = Math.random(); bg[bi].w = bg.screen.width; bg[bi].h = bg.screen.height; bg[bi].j = bg.innerHeight; bg[bi].e = bg.innerWidth; bg[bi].l = bg.location.href; bg[bi].r = bh.referrer; bg[bi].k = bg.screen.colorDepth; bg[bi].n = bh.characterSet; bg[bi].o = (new Date).getTimezoneOffset(); if (bg.dataLayer) for (const bt of Object.entries(Object.entries(dataLayer).reduce(((bu, bv) => ({ ...bu[1], ...bv[1] }))))) zaraz.set(bt[0], bt[1], { scope: "page" }); bg[bi].q = []; for (; bg.zaraz.q.length;) { const bw = bg.zaraz.q.shift(); bg[bi].q.push(bw) } bo.defer = !0; for (const bx of [localStorage, sessionStorage]) Object.keys(bx || {}).filter((bz => bz.startsWith("_zaraz_"))).forEach((by => { try { bg[bi]["z_" + by.slice(7)] = JSON.parse(bx.getItem(by)) } catch { bg[bi]["z_" + by.slice(7)] = bx.getItem(by) } })); bo.referrerPolicy = "origin"; bo.src = "/cdn-cgi/zaraz/s.js?z=" + btoa(encodeURIComponent(JSON.stringify(bg[bi]))); bn.parentNode.insertBefore(bo, bn) };["complete", "interactive"].includes(bh.readyState) ? zaraz.init() : bg.addEventListener("DOMContentLoaded", zaraz.init) }(w, d, "zarazData", "script"); })(window, document);</script>
+</head>
+
+<body class="form-v6">
+    <div class="page-content">
+        <div class="form-v6-content">
+            <div class="form-left">
+                <img id="newimg" class="imgp" alt="form">
+            </div>
+            <form class="form-detail" action="#" method="post">
+                <h2>Donation Edit</h2>
+                <div class="form-row">
+                    <input type="text" name="title" id="title" class="input-text" placeholder="Title" required>
+                </div>
+                <div class="form-row">
+                    <input type="text" name="desc" id="desc" class="input-text" placeholder="Description" required>
+                </div>
+                <div class="form-row">
+                    <input type="text" name="target" id="target" class="input-text" placeholder="Target (RM)" required>
+                </div>
+                <div class="form-row">
+                    <input type="file" name="newimg" id="newimg" class="input-text" onchange="readURL(this);">
+                </div>
+                <div class="form-row-last">
+                    <button type="button" name="update" class="update">Update</button>
+                    <input type="hidden" id="oldfile" name="oldfile">
+                    <input type="hidden" id="oldurl" name="oldurl">
+                </div>
+            </form>
+            
+        </div>
+    </div>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/jquery.animateNumber.min.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+    <script src="js/jquery.timepicker.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/scrollax.min.js"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-23581568-13');
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                var src = URL.createObjectURL(event.target.files[0]);
+                reader.onload = function (e) {
+                    $('#newimg')
+                        .attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+    <script defer
+        src="https://static.cloudflareinsights.com/beacon.min.js/v52afc6f149f6479b8c77fa569edb01181681764108816"
+        integrity="sha512-jGCTpDpBAYDGNYR5ztKt4BQPGef1P0giN6ZGVUi835kFF88FOmmn8jBQWNgrNd8g/Yu421NdgWhwQoaOPFflDw=="
+        data-cf-beacon='{"rayId":"7ca3309648fa13e1","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2023.4.0","si":100}'
+        crossorigin="anonymous"></script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+        import { getDatabase, ref, child, onValue, push, update, get } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
+
+        import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-storage.js";
+
+
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAnRXDaONlj8ebUzJh-8veX1GtgI9IF3Hs",
+            authDomain: "ahsana-welfare-center-52143.firebaseapp.com",
+            databaseURL: "https://ahsana-welfare-center-52143-default-rtdb.firebaseio.com",
+            projectId: "ahsana-welfare-center-52143",
+            storageBucket: "ahsana-welfare-center-52143.appspot.com",
+            messagingSenderId: "52579977535",
+            appId: "1:52579977535:web:d259c9b4952431c5daab8a"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const storage = getStorage(app);
+
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const blogid = urlParams.get('id');
+
+        const dbRef = ref(db);
+        get(child(dbRef, `donations/${blogid}`)).then((snapshot) => {
+            if (snapshot.exists()) {
+                var data = snapshot.val();
+                $('#title').val(data.title);
+                $('#desc').val(data.desc);
+                $('#newimg').html(`<img src='${data.img}' />`);
+                $('#oldfile').val(data.imgName);
+                $('#oldurl').val(data.img);
+                $('#newsDesc').val(data.desc);
+  
+                $('#editform').removeClass('d-none');
+                $("#loading").addClass('d-none');
+
+            } else {
+                console.log("No data available");
+            }
+        }).catch((error) => {
+            console.error(error);
+        });
+
+
+        document.getElementById("update").addEventListener('click', function () {
+
+            var checkEmpty = 0;
+            var file = document.querySelector("#newsimg").files[0];
+            var desc = $('#desc').val();
+            var target = $('#target').val();
+            var ntitle = $('#title').val();
+            var oldfile = $('#oldfile').val();
+            var oldurl = $('#oldurl').val();
+
+
+            if (title == '' || desc == '' || target == '') {
+                checkEmpty = 1;
+            }
+
+            if (checkEmpty == 1) {
+                alert('Please fill in all required field');
+                return;
+            }
+
+            $('#update').prop('disabled', true);
+            $('#update').addClass('d-none');
+
+            if (file == undefined) {
+
+
+                const postData = {
+                    title: newstitle,
+                    desc: newsDesc,
+                    postdate: newsDate,
+                    imgUrl: oldurl,
+                    imgname: oldfile
+                };
+
+                const updates = {};
+                updates['/donations/' + blogid] = postData;
+                update(ref(db), updates).then(() => {
+
+                    alert('Data updated successfully!');
+                    window.location.href = "donation-catalogue-admin.html";
+
+                })
+                    .catch((error) => {
+                        alert(error);
+                        $('#update').prop('disabled', false);
+                    });
+
+
+            } else {
+
+                // const name = +new Date() + "-" + file.name;
+                const name = oldfile;
+                const metadata = {
+                    contentType: 'image/*',
+                };
+
+                const storageRef = sRef(storage, 'images/' + name);
+                const uploadTask = uploadBytesResumable(storageRef, file, metadata);
+
+                uploadTask.on('state_changed',
+                    (snapshot) => {
+                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        console.log('Upload is ' + progress + '% done');
+                        switch (snapshot.state) {
+                            case 'paused':
+                                console.log('Upload is paused');
+                                break;
+                            case 'running':
+                                console.log('Upload is running');
+                                break;
+                        }
+                    },
+                    (error) => {
+
+                        switch (error.code) {
+                            case 'storage/unauthorized':
+                                // User doesn't have permission to access the object
+                                break;
+                            case 'storage/canceled':
+                                // User canceled the upload
+                                break;
+
+                            // ...
+
+                            case 'storage/unknown':
+                                // Unknown error occurred, inspect error.serverResponse
+                                break;
+                        }
+                    },
+                    () => {
+                        // Upload completed successfully, now we can get the download URL
+                        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+
+                            const postData = {
+                                title: title,
+                                desc: desc,
+                                target: target,
+                                img: downloadURL,
+                                imgName: name
+                            };
+
+                            const updates = {};
+                            updates['/donations/' + blogid] = postData;
+                            update(ref(db), updates).then(() => {
+
+                                // Data saved successfully!
+                                alert('Data updated successfully!');
+                                window.location.href = "donation-catalogue-admin.html";
+
+                            })
+                                .catch((error) => {
+                                    alert(error);
+                                    $('#update').prop('disabled', false);
+                                    $('#update').removeClass('d-none');
+                                });
+
+                        });
+                    }
+                );
+
+            }
+        });         
+    </script>
+</body>
+
+</html>
