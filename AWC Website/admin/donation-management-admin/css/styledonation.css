@@ -212,6 +212,16 @@ button {
     size: 20px;
   }
 
+  button.delete {
+    margin: 20px;
+    background: #ee251b;
+    color: #ffffff;
+    padding: 10px;
+    border: 10px;
+    border-radius: 6px;
+    size: 20px;
+  }
+
   #newimg{
     max-width: 250px;
     border-radius: 6px;
