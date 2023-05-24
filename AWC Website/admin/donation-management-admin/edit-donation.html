@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <title>Donation Edit</title>
@@ -36,13 +35,13 @@
                     <input type="file" name="newimg" id="newimg" class="input-text" onchange="readURL(this);">
                 </div>
                 <div class="form-row-last">
-                    <button type="button" name="update" class="update">Update</button>
-                    <button type="button" name="delete" class="delete" bg-color="red">Delete</button>
+                    <button type="button" name="update" class="update" id="update">Update</button>
+                    <button type="button" name="delete" class="delete" id="delete" bg-color="red">Delete</button>
                     <input type="hidden" id="oldfile" name="oldfile">
                     <input type="hidden" id="oldurl" name="oldurl">
                 </div>
             </form>
-            
+
         </div>
     </div>
 
@@ -88,7 +87,7 @@
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
-        import { getDatabase, ref, child, onValue, push, update, get } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
+        import { getDatabase, ref, child, onValue, push, update, get, remove } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
 
         import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-storage.js";
 
@@ -126,7 +125,7 @@
                 $('#oldfile').val(data.imgName);
                 $('#oldurl').val(data.img);
                 $('#newsDesc').val(data.desc);
-  
+
                 $('#editform').removeClass('d-none');
                 $("#loading").addClass('d-none');
 
@@ -144,7 +143,7 @@
             var file = document.querySelector("#newsimg").files[0];
             var desc = $('#desc').val();
             var target = $('#target').val();
-            var ntitle = $('#title').val();
+            var title = $('#title').val();
             var oldfile = $('#oldfile').val();
             var oldurl = $('#oldurl').val();
 
@@ -259,8 +258,29 @@
                 );
 
             }
-        });         
+        });
+            $('.delete').on('click', function(){
+            var id = $(this).data('blogid');
+            var imgName = $(this).children('input').val();
+
+            if (confirm("Delete donation?") == true) {
+                  const dbRef = ref(db, "/donations/" + blogid);
+                  remove(dbRef).then(() => alert("Deleted Successfully"))
+                  setTimeout(function () {
+                        window.location.href = "donation-catalogue-admin.html"
+                }, 2000);
+                  const desertRef = sRef(storage, `images/${imgName}`);
+                  // Delete the file
+                  deleteObject(desertRef).then(() => {
+                    // File deleted successfully
+                  }).catch((error) => {
+                    // Uh-oh, an error occurred!
+                    console.log(error);
+                  });
+            } else {
+            }
+        });
+                 
     </script>
 </body>
-
 </html>

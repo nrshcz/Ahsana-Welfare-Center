@@ -19,7 +19,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-function changePassword() {
+function changePassword(password2) {
     const user = auth.currentUser;
     const newPassword = document.getElementById('password2').value;
 
