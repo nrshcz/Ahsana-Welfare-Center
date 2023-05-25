@@ -319,9 +319,9 @@
 </script>
 <script type="module">
   // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
-  import { getDatabase, ref, child, onValue, remove, set } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
-  import { getStorage, ref as sRef, deleteObject} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-storage.js";
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+  import { getDatabase, ref, child, onValue, remove, set } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js";
+  import { getStorage, ref as sRef, deleteObject} from "https://www.gstatic.com/firebasejs/9.22.0/firebase-storage.js";
 
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
@@ -369,7 +369,7 @@
       }
       console.log('donatD');
       $(donatArr).each(function(){
-          card += `<div class="col-md-6 col-lg-3 ">
+          card += `<div class="col-md-6 col-lg-3">
                     <div class="causes causes-2 text-center ftco-animate">
                       <a href="#" class="img w-100" style="background-image: url('${this.img}');"></a>
                         <div class="text p-3">
@@ -394,13 +394,16 @@
 
       });
       console.log('donatD2');
+      
       $('#donation-content').html(card);
 
-      setTimeout(() => { 
-        $('.blogcard').addClass('fadeInUp ftco-animated');
-      }, 600);
+      //setTimeout(() => { 
+      //  $('.blogcard').addClass('fadeInUp ftco-animated');
+      //}, 600);
+
       console.log('donatD3');
-      $('.deletebtn').on('click', function(){
+
+      /**$('.deletebtn').on('click', function(){
             var id = $(this).data('id');
             var imgName = $(this).children('input').val();
 
@@ -418,7 +421,7 @@
                   });
             } else {
             }
-      });
+      });**/
   });
 </script>
 </body>
