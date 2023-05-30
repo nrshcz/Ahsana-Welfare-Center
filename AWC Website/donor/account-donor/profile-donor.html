@@ -419,3 +419,59 @@
             $('#state').val('');
 
     });
+    $('#btnSave').on('click', function(){
+
+        imgpath = $('#oldurl').val();
+        imgname = $('#oldname').val();
+
+
+        $('.overlay').removeClass('d-none');
+        $('#btnSave').prop('disabled', true);
+
+        var file = document.querySelector("#photo").files[0];
+
+
+        if(file == undefined){
+
+            updateInfo();
+
+        }else{
+
+            const name = +new Date() + "-" + file.name;
+            const metadata = {
+               contentType: 'image/*',
+            };
+
+            const storageRef = sRef(storage, 'profile/' + name);
+            const uploadTask = uploadBytesResumable(storageRef, file, metadata);
+
+            uploadTask.on('state_changed',
+              (snapshot) => {
+                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log('Upload is ' + progress + '% done');
+                switch (snapshot.state) {
+                  case 'paused':
+                    console.log('Upload is paused');
+                    break;
+                  case 'running':
+                    console.log('Upload is running');
+                    break;
+                }
+              }, 
+              (error) => {
+               
+                switch (error.code) {
+                  case 'storage/unauthorized':
+                    // User doesn't have permission to access the object
+                    break;
+                  case 'storage/canceled':
+                    // User canceled the upload
+                    break;
+
+                  // ...
+
+                  case 'storage/unknown':
+                    // Unknown error occurred, inspect error.serverResponse
+                    break;
+                }
+              }, 
