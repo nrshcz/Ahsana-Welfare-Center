@@ -263,12 +263,16 @@
                 phone: phoneNum,
                 gender: gender,
                 role: donor,
+                businessemail: 0,
+                profileimg: 0,
+                profileimgname: 0,
             }).then(() => {
               alert('Successfully register new donor account');
               window.location.href = '../../donor/login-donor/login-donor-page.html';
             })
             .catch((err) => {
               alert(err.message);
+               $('#signUp').prop('disabled', false);
             });
 
             // alert('Successfully register new donor account');
@@ -287,8 +291,7 @@
 
 
     }
-    
- // register donor tested and done 
+     
 
   </script>
 
