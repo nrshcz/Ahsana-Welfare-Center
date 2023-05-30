@@ -475,3 +475,30 @@
                     break;
                 }
               }, 
+              () => {
+                // Upload completed successfully, now we can get the download URL
+                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+
+
+                    const desertRef = sRef(storage, `profile/${imgname}`);
+                    // Delete the file
+                    deleteObject(desertRef).then(() => {
+                      // File deleted successfully
+                    }).catch((error) => {
+                      // Uh-oh, an error occurred!
+                      console.log(error);
+                    });
+
+                     imgpath = downloadURL;
+                     imgname = name;
+                     updateInfo();
+
+                });
+              }
+            );
+
+
+        }
+
+       
+  });
