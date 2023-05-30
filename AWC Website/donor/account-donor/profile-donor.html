@@ -238,11 +238,14 @@
         </div><!--/col-9-->
     </div><!--/row-->
 
+    <script src="js/jquery.min.js"></script>
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
 
-        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
+        import { getDatabase, ref, child, onValue,  push, update, get  } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
+        import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL, deleteObject} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-storage.js";
+
         import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
 
         // Your web app's Firebase configuration
@@ -256,12 +259,14 @@
           appId: "1:52579977535:web:d259c9b4952431c5daab8a"
         };
 
-          // Initialize Firebase
-          const app = initializeApp(firebaseConfig);
-          // const database = getDatabase(app);
-          const auth = getAuth(app);
-    </script>
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const storage = getStorage(app);
+        // const database = getDatabase(app);
+        const auth = getAuth(app);
+        var useremail = "";
+        var userid = "";
+        var imgpath = 0;
+        var imgname = 0;
 
     
-</body>
-</html>
