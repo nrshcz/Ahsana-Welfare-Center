@@ -502,3 +502,64 @@
 
        
   });
+  function updateInfo(){
+
+    var firstname = $('#first_name').val();
+    var lastname = $('#last_name').val();
+    var phone = $('#phone').val();
+    var dob = $('#dob').val();
+    var email =  useremail;
+    var gender =  $('#gender option:selected').val();
+    var address =   $('#address').val();
+    var city =   $('#city').val();
+    var businessemail = $('#businessemail').val();
+    var postcode = $('#postcode').val();
+    var state = $('#state').val();
+   
+
+  
+
+    const postData = {
+      address: (address == "") ? 0 : address,
+      birth_date: (dob == "") ? 0 : dob,
+      city: (city == "") ? 0 : city,
+      email: email,
+      firstname: (firstname == "") ? 0 : firstname,
+      gender: (gender == "") ? 0 : gender,
+      lastname: (lastname == "") ? 0 : lastname,
+      phone: (phone == "") ? 0 : phone,
+      postcode: (postcode == "") ? 0 : postcode,
+      role: 'donor',
+      state: (state == "") ? 0 : state,
+      businessemail: (businessemail == "") ? 0 : businessemail,
+      profileimg: imgpath,
+      profileimgname: imgname
+    };
+
+
+    const db = getDatabase(app);
+    const updates = {};
+    updates['/donors/' + userid] = postData;
+    update(ref(db), updates).then(() => {
+
+      $('#btnSave').prop('disabled', false);
+      $('.overlay').addClass('d-none');
+      $('#photo').val('');
+      alert('Data updated successfully!');
+      // window.location.href = "profile-donor.html";
+
+
+    })
+    .catch((error) => {
+        alert(error);
+        $('#btnSave').prop('disabled', false);
+        $('.overlay').addClass('d-none');
+    });
+
+}
+
+</script>
+
+
+</body>
+</html>
