@@ -376,3 +376,30 @@
   
             }
           });
+
+          $('.btnRemove').on('click', function(){
+
+            imgpath = $('#oldurl').val();
+            imgname = $('#oldname').val();
+
+
+            if (confirm("Confirm to remove?") == true) {
+
+                  $('.overlay').removeClass('d-none');
+                  const refStorage1 = sRef(storage, `profile/${imgname}`);
+                  // Delete the file
+                  deleteObject(refStorage1).then(() => {
+
+                      imgpath = 0;
+                      imgname = 0;
+                      updateInfo();
+                      $('.overlay').addClass('d-none');
+
+                  }).catch((error) => {
+                    // Uh-oh, an error occurred!
+                    console.log(error);
+                    $('.overlay').addClass('d-none');
+                  });
+            } 
+
+        });
