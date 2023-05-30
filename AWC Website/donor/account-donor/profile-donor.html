@@ -270,3 +270,109 @@
         var imgname = 0;
 
     
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+             
+            
+              const uid = user.uid;
+              userid = user.uid;
+              const db = getDatabase(app);
+              const refData = ref(db, 'donors/' + uid);
+                onValue(refData, (snapshot) => {
+                  const data = snapshot.val();
+                  console.log(data);
+  
+                  if(data.firstname !== 0){
+                      $('#first_name').val(data.firstname);
+                  }else{
+                      $('#first_name').val('');
+                  }
+                  
+                  if(data.lastname !== 0){
+                      $('#last_name').val(data.lastname);
+                  }else{
+                      $('#last_name').val('');
+                  }
+  
+                  if(data.address !== 0){
+                      $('#address').val(data.address);
+                  }else{
+                      $('#address').val('');
+                  }
+                  
+                  if(data.phone !== 0){
+                      $('#phone').val(data.phone);
+                  }else{
+                      $('#phone').val('');
+                  }
+                  
+                  if(data.birth_date !== 0){
+                      $('#dob').val(data.birth_date);
+                  }else{
+                      $('#dob').val('');
+                  }
+  
+                  if(data.email !== 0){
+                      $('#email').val(data.email);
+                  }else{
+                      $('#email').val('');
+                  }
+                  useremail = data.email;
+  
+                  if(data.gender !== 0){
+                      $('#gender').val(data.gender).change();
+                  }else{
+                      $('#gender').val('');
+                  }
+                 
+                  if(data.city !== 0){
+                      $('#city').val(data.city);
+                  }else{
+                      $('#city').val('');
+                  }
+  
+                  if(data.postcode !== 0){
+                      $('#postcode').val(data.postcode);
+                  }else{
+                      $('#postcode').val('');
+                  }
+                
+                  if(data.state !== 0){
+                      $('#state').val(data.state);
+                  }else{
+                      $('#state').val('');
+                  }
+     
+                  if(data.businessemail !== 0){
+                      $('#businessemail').val(data.businessemail);
+                  }else{
+                      $('#businessemail').val('');
+                  }
+  
+                  $('#oldurl').val(data.profileimg);
+                  $('#oldname').val(data.profileimgname);
+                  if(data.profileimg != 0){
+                     $('.avatar').attr('src', data.profileimg);
+                     $('.btnRemove').removeClass('d-none');
+                  }else{
+                     $('.avatar').attr('src', 'prop2.png');
+                     $('.btnRemove').addClass('d-none');
+                  }
+  
+              });
+  
+              setTimeout(function greet() {
+                $('.overlay').addClass('d-none');
+              }, 1500);
+  
+        
+  
+            } else {
+              // User is signed out
+              // ...
+               alert('Please login first');
+               window.location.href = '../login-donor/login-donor-page.html';
+               console.log('donor is logout');
+  
+            }
+          });
