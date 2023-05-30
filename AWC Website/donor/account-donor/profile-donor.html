@@ -12,9 +12,80 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style type="text/css">
+    .overlay {
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        z-index: 99;
+        background: rgba(0,0,0,0.8);
+    }
+
+    .overlay__inner {
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
+
+    .overlay__content {
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .spinner {
+        width: 75px;
+        height: 75px;
+        display: inline-block;
+        border-width: 2px;
+        border-color: rgba(255, 255, 255, 0.05);
+        border-top-color: #fff;
+        animation: spin 1s infinite linear;
+        border-radius: 100%;
+        border-style: solid;
+    }
+
+    @keyframes spin {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .d-none{
+      display: none;
+    }
+    .profileBox{
+      position: relative;
+    }
+
+    .profileBox .btnRemove{
+        width: fit-content;
+        background: #D60B00;
+        color: #ffffff;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 6px;
+        padding: 5px 10px;
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+        z-index: 2;
+        cursor: pointer;
+    }
+  </style>
 </head>
 
 <hr>
+<div class="overlay">
+    <div class="overlay__inner">
+        <div class="overlay__content"><span class="spinner"></span></div>
+    </div>
+</div>
 <div class="container bootstrap snippet">
     <div class="row">
   		<div class="col-sm-10"><h1>Donor's Profile</h1></div>
@@ -25,9 +96,14 @@
               
 
       <div class="text-center">
-        <img src="prop2.png" class="avatar img-circle img-thumbnail" alt="avatar">
+        <div class="profileBox">
+          <div class="btnRemove d-none">
+              <span>&#x2715</span>
+          </div>
+          <img src="prop2.png" class="avatar img-circle img-thumbnail" alt="avatar">
+        </div>
         <h6>Profile Picture</h6>
-        <input type="file" class="text-center center-block file-upload">
+        <input type="file" class="text-center center-block file-upload" id="photo">
       </div></hr><br>
 
           <div class="panel panel-default">
@@ -48,6 +124,10 @@
             <div class="tab-pane active" id="donorprofile">
                 <hr>
                   <form class="form" action="##" method="post" id="registrationForm">
+
+
+                      <input type="hidden" id="oldurl" />
+                      <input type="hidden" id="oldname" />
                       <div class="form-group">
                           
                           <div class="col-xs-6">
@@ -74,51 +154,71 @@
                       <div class="form-group">
                           <div class="col-xs-6">
                              <label for="date"><h4>Date of Birth</h4></label>
-                              <input type="date" class="form-control" name="date of birth" id="birthday date" placeholder="enter date of birth" title="enter your date of birth.">
+                              <input type="date" class="form-control" name="date of birth" id="dob" placeholder="enter date of birth" title="enter your date of birth.">
                           </div>
                       </div>
                       <div class="form-group">
                           
                           <div class="col-xs-6">
                               <label for="email"><h4>Email</h4></label>
-                              <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
+                              <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email." disabled>
                           </div>
                       </div>
                       <div class="form-group">
                           
                           <div class="col-xs-6">
                               <label for="gender"><h4>Gender</h4></label> 
-                              <input type="text" class="form-control" id="gender" placeholder="gender" title="enter your gender">
+                              <!-- <input type="text" class="form-control" id="gender" placeholder="gender" title="enter your gender"> -->
+                              <select name="gender" id="gender" class="form-control">
+                                  <option value="male">Male</option>
+                                  <option value="female">Female</option>
+                              </select>
                               <!-- gender cannot be changed -->
                           </div>
                       </div>
-                     
+
                       <div class="form-group">
                           
                         <div class="col-xs-12">
-                            <label for="email"><h4>Address</h4></label>
-                            <input type="email" class="form-control" id="address" placeholder="address" title="enter your address">
+                            <label for="businessemail"><h4>Business Email</h4></label>
+                            <input type="email" class="form-control" id="businessemail" placeholder="Business Email" title="enter your business email">
+                        </div>
+
+                      </div>
+                     
+                    <div class="form-group">
+                          
+                        <div class="col-xs-12">
+                            <label for="address"><h4>Address</h4></label>
+                            <input type="text" class="form-control" id="address" placeholder="address" title="enter your address">
                         </div>
                     </div>
                     <div class="form-group">
                           
                         <div class="col-xs-12">
-                            <label for="email"><h4>City</h4></label>
-                            <input type="email" class="form-control" id="city" placeholder="city" title="enter your city">
+                            <label for="city"><h4>City</h4></label>
+                            <input type="text" class="form-control" id="city" placeholder="city" title="enter your city">
+                        </div>
+                    </div>
+                     <div class="form-group">
+                          
+                        <div class="col-xs-12">
+                            <label for="state"><h4>state</h4></label>
+                            <input type="text" class="form-control" id="state" placeholder="state" title="enter your state">
                         </div>
                     </div>
                     <div class="form-group">
                           
                         <div class="col-xs-12">
-                            <label for="email"><h4>Postcode</h4></label>
-                            <input type="email" class="form-control" id="postcode" placeholder="postcode" title="enter your postcode">
+                            <label for="postcode"><h4>Postcode</h4></label>
+                            <input type="text" class="form-control" id="postcode" placeholder="postcode" title="enter your postcode">
                         </div>
                     </div>
                       <div class="form-group">
                            <div class="col-xs-12">
                                 <br>
-                              	<button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                               	<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                              	<button class="btn btn-lg btn-success" type="button" id="btnSave"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                               	<button class="btn btn-lg" type="button" id="btn-reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
                             </div>
                       </div>
               	</form>
@@ -202,7 +302,7 @@
                           
                           <div class="col-xs-6">
                               <label for="email"><h4>Email</h4></label>
-                              <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
+                              <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email." disabled>
                           </div>
                       </div>
                       <div class="form-group">
@@ -238,6 +338,7 @@
         </div><!--/col-9-->
     </div><!--/row-->
 
+  
     <script src="js/jquery.min.js"></script>
     <script type="module">
         // Import the functions you need from the SDKs you need
@@ -269,115 +370,114 @@
         var imgpath = 0;
         var imgname = 0;
 
-    
         onAuthStateChanged(auth, (user) => {
-            if (user) {
-             
-            
-              const uid = user.uid;
-              userid = user.uid;
-              const db = getDatabase(app);
-              const refData = ref(db, 'donors/' + uid);
-                onValue(refData, (snapshot) => {
-                  const data = snapshot.val();
-                  console.log(data);
-  
-                  if(data.firstname !== 0){
-                      $('#first_name').val(data.firstname);
-                  }else{
-                      $('#first_name').val('');
-                  }
-                  
-                  if(data.lastname !== 0){
-                      $('#last_name').val(data.lastname);
-                  }else{
-                      $('#last_name').val('');
-                  }
-  
-                  if(data.address !== 0){
-                      $('#address').val(data.address);
-                  }else{
-                      $('#address').val('');
-                  }
-                  
-                  if(data.phone !== 0){
-                      $('#phone').val(data.phone);
-                  }else{
-                      $('#phone').val('');
-                  }
-                  
-                  if(data.birth_date !== 0){
-                      $('#dob').val(data.birth_date);
-                  }else{
-                      $('#dob').val('');
-                  }
-  
-                  if(data.email !== 0){
-                      $('#email').val(data.email);
-                  }else{
-                      $('#email').val('');
-                  }
-                  useremail = data.email;
-  
-                  if(data.gender !== 0){
-                      $('#gender').val(data.gender).change();
-                  }else{
-                      $('#gender').val('');
-                  }
-                 
-                  if(data.city !== 0){
-                      $('#city').val(data.city);
-                  }else{
-                      $('#city').val('');
-                  }
-  
-                  if(data.postcode !== 0){
-                      $('#postcode').val(data.postcode);
-                  }else{
-                      $('#postcode').val('');
-                  }
-                
-                  if(data.state !== 0){
-                      $('#state').val(data.state);
-                  }else{
-                      $('#state').val('');
-                  }
-     
-                  if(data.businessemail !== 0){
-                      $('#businessemail').val(data.businessemail);
-                  }else{
-                      $('#businessemail').val('');
-                  }
-  
-                  $('#oldurl').val(data.profileimg);
-                  $('#oldname').val(data.profileimgname);
-                  if(data.profileimg != 0){
-                     $('.avatar').attr('src', data.profileimg);
-                     $('.btnRemove').removeClass('d-none');
-                  }else{
-                     $('.avatar').attr('src', 'prop2.png');
-                     $('.btnRemove').addClass('d-none');
-                  }
-  
-              });
-  
-              setTimeout(function greet() {
-                $('.overlay').addClass('d-none');
-              }, 1500);
-  
-        
-  
-            } else {
-              // User is signed out
-              // ...
-               alert('Please login first');
-               window.location.href = '../login-donor/login-donor-page.html';
-               console.log('donor is logout');
-  
-            }
-          });
+          if (user) {
+           
+          
+            const uid = user.uid;
+            userid = user.uid;
+            const db = getDatabase(app);
+            const refData = ref(db, 'donors/' + uid);
+              onValue(refData, (snapshot) => {
+                const data = snapshot.val();
+                console.log(data);
 
-          $('.btnRemove').on('click', function(){
+                if(data.firstname !== 0){
+                    $('#first_name').val(data.firstname);
+                }else{
+                    $('#first_name').val('');
+                }
+                
+                if(data.lastname !== 0){
+                    $('#last_name').val(data.lastname);
+                }else{
+                    $('#last_name').val('');
+                }
+
+                if(data.address !== 0){
+                    $('#address').val(data.address);
+                }else{
+                    $('#address').val('');
+                }
+                
+                if(data.phone !== 0){
+                    $('#phone').val(data.phone);
+                }else{
+                    $('#phone').val('');
+                }
+                
+                if(data.birth_date !== 0){
+                    $('#dob').val(data.birth_date);
+                }else{
+                    $('#dob').val('');
+                }
+
+                if(data.email !== 0){
+                    $('#email').val(data.email);
+                }else{
+                    $('#email').val('');
+                }
+                useremail = data.email;
+
+                if(data.gender !== 0){
+                    $('#gender').val(data.gender).change();
+                }else{
+                    $('#gender').val('');
+                }
+               
+                if(data.city !== 0){
+                    $('#city').val(data.city);
+                }else{
+                    $('#city').val('');
+                }
+
+                if(data.postcode !== 0){
+                    $('#postcode').val(data.postcode);
+                }else{
+                    $('#postcode').val('');
+                }
+              
+                if(data.state !== 0){
+                    $('#state').val(data.state);
+                }else{
+                    $('#state').val('');
+                }
+   
+                if(data.businessemail !== 0){
+                    $('#businessemail').val(data.businessemail);
+                }else{
+                    $('#businessemail').val('');
+                }
+
+                $('#oldurl').val(data.profileimg);
+                $('#oldname').val(data.profileimgname);
+                if(data.profileimg != 0){
+                   $('.avatar').attr('src', data.profileimg);
+                   $('.btnRemove').removeClass('d-none');
+                }else{
+                   $('.avatar').attr('src', 'prop2.png');
+                   $('.btnRemove').addClass('d-none');
+                }
+
+            });
+
+            setTimeout(function greet() {
+              $('.overlay').addClass('d-none');
+            }, 1500);
+
+      
+
+          } else {
+            // User is signed out
+            // ...
+             alert('Please login first');
+             window.location.href = '../login-donor/login-donor-page.html';
+             console.log('donor is logout');
+
+          }
+        });
+
+        $('.btnRemove').on('click', function(){
 
             imgpath = $('#oldurl').val();
             imgname = $('#oldname').val();
@@ -403,163 +503,164 @@
             } 
 
         });
-
         $('#btn-reset').on('click', function(){
 
-            $('#first_name').val('');
-            $('#last_name').val('');
-            $('#address').val('');
-            $('#phone').val('');
-            $('#dob').val('');
-            $('#businessemail').val('');
-            $('#gender').val('');
-            $('#address').val('');
-            $('#city').val('');
-            $('#postcode').val('');
-            $('#state').val('');
+                $('#first_name').val('');
+                $('#last_name').val('');
+                $('#address').val('');
+                $('#phone').val('');
+                $('#dob').val('');
+                $('#businessemail').val('');
+                $('#gender').val('');
+                $('#address').val('');
+                $('#city').val('');
+                $('#postcode').val('');
+                $('#state').val('');
 
-    });
-    $('#btnSave').on('click', function(){
+        });
 
-        imgpath = $('#oldurl').val();
-        imgname = $('#oldname').val();
+        $('#btnSave').on('click', function(){
 
-
-        $('.overlay').removeClass('d-none');
-        $('#btnSave').prop('disabled', true);
-
-        var file = document.querySelector("#photo").files[0];
+              imgpath = $('#oldurl').val();
+              imgname = $('#oldname').val();
 
 
-        if(file == undefined){
+              $('.overlay').removeClass('d-none');
+              $('#btnSave').prop('disabled', true);
 
-            updateInfo();
+              var file = document.querySelector("#photo").files[0];
+  
 
-        }else{
+              if(file == undefined){
 
-            const name = +new Date() + "-" + file.name;
-            const metadata = {
-               contentType: 'image/*',
-            };
+                  updateInfo();
 
-            const storageRef = sRef(storage, 'profile/' + name);
-            const uploadTask = uploadBytesResumable(storageRef, file, metadata);
+              }else{
 
-            uploadTask.on('state_changed',
-              (snapshot) => {
-                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                console.log('Upload is ' + progress + '% done');
-                switch (snapshot.state) {
-                  case 'paused':
-                    console.log('Upload is paused');
-                    break;
-                  case 'running':
-                    console.log('Upload is running');
-                    break;
-                }
-              }, 
-              (error) => {
-               
-                switch (error.code) {
-                  case 'storage/unauthorized':
-                    // User doesn't have permission to access the object
-                    break;
-                  case 'storage/canceled':
-                    // User canceled the upload
-                    break;
+                  const name = +new Date() + "-" + file.name;
+                  const metadata = {
+                     contentType: 'image/*',
+                  };
 
-                  // ...
+                  const storageRef = sRef(storage, 'profile/' + name);
+                  const uploadTask = uploadBytesResumable(storageRef, file, metadata);
 
-                  case 'storage/unknown':
-                    // Unknown error occurred, inspect error.serverResponse
-                    break;
-                }
-              }, 
-              () => {
-                // Upload completed successfully, now we can get the download URL
-                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                  uploadTask.on('state_changed',
+                    (snapshot) => {
+                      const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                      console.log('Upload is ' + progress + '% done');
+                      switch (snapshot.state) {
+                        case 'paused':
+                          console.log('Upload is paused');
+                          break;
+                        case 'running':
+                          console.log('Upload is running');
+                          break;
+                      }
+                    }, 
+                    (error) => {
+                     
+                      switch (error.code) {
+                        case 'storage/unauthorized':
+                          // User doesn't have permission to access the object
+                          break;
+                        case 'storage/canceled':
+                          // User canceled the upload
+                          break;
+
+                        // ...
+
+                        case 'storage/unknown':
+                          // Unknown error occurred, inspect error.serverResponse
+                          break;
+                      }
+                    }, 
+                    () => {
+                      // Upload completed successfully, now we can get the download URL
+                      getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
 
 
-                    const desertRef = sRef(storage, `profile/${imgname}`);
-                    // Delete the file
-                    deleteObject(desertRef).then(() => {
-                      // File deleted successfully
-                    }).catch((error) => {
-                      // Uh-oh, an error occurred!
-                      console.log(error);
-                    });
+                          const desertRef = sRef(storage, `profile/${imgname}`);
+                          // Delete the file
+                          deleteObject(desertRef).then(() => {
+                            // File deleted successfully
+                          }).catch((error) => {
+                            // Uh-oh, an error occurred!
+                            console.log(error);
+                          });
 
-                     imgpath = downloadURL;
-                     imgname = name;
-                     updateInfo();
+                           imgpath = downloadURL;
+                           imgname = name;
+                           updateInfo();
 
-                });
+                      });
+                    }
+                  );
+
+
               }
-            );
 
+             
+        });
+
+        function updateInfo(){
+
+              var firstname = $('#first_name').val();
+              var lastname = $('#last_name').val();
+              var phone = $('#phone').val();
+              var dob = $('#dob').val();
+              var email =  useremail;
+              var gender =  $('#gender option:selected').val();
+              var address =   $('#address').val();
+              var city =   $('#city').val();
+              var businessemail = $('#businessemail').val();
+              var postcode = $('#postcode').val();
+              var state = $('#state').val();
+             
+
+            
+
+              const postData = {
+                address: (address == "") ? 0 : address,
+                birth_date: (dob == "") ? 0 : dob,
+                city: (city == "") ? 0 : city,
+                email: email,
+                firstname: (firstname == "") ? 0 : firstname,
+                gender: (gender == "") ? 0 : gender,
+                lastname: (lastname == "") ? 0 : lastname,
+                phone: (phone == "") ? 0 : phone,
+                postcode: (postcode == "") ? 0 : postcode,
+                role: 'donor',
+                state: (state == "") ? 0 : state,
+                businessemail: (businessemail == "") ? 0 : businessemail,
+                profileimg: imgpath,
+                profileimgname: imgname
+              };
+     
+        
+              const db = getDatabase(app);
+              const updates = {};
+              updates['/donors/' + userid] = postData;
+              update(ref(db), updates).then(() => {
+
+                $('#btnSave').prop('disabled', false);
+                $('.overlay').addClass('d-none');
+                $('#photo').val('');
+                alert('Data updated successfully!');
+                // window.location.href = "profile-donor.html";
+
+
+              })
+              .catch((error) => {
+                  alert(error);
+                  $('#btnSave').prop('disabled', false);
+                  $('.overlay').addClass('d-none');
+              });
 
         }
 
-       
-  });
-  function updateInfo(){
+    </script>
 
-    var firstname = $('#first_name').val();
-    var lastname = $('#last_name').val();
-    var phone = $('#phone').val();
-    var dob = $('#dob').val();
-    var email =  useremail;
-    var gender =  $('#gender option:selected').val();
-    var address =   $('#address').val();
-    var city =   $('#city').val();
-    var businessemail = $('#businessemail').val();
-    var postcode = $('#postcode').val();
-    var state = $('#state').val();
-   
-
-  
-
-    const postData = {
-      address: (address == "") ? 0 : address,
-      birth_date: (dob == "") ? 0 : dob,
-      city: (city == "") ? 0 : city,
-      email: email,
-      firstname: (firstname == "") ? 0 : firstname,
-      gender: (gender == "") ? 0 : gender,
-      lastname: (lastname == "") ? 0 : lastname,
-      phone: (phone == "") ? 0 : phone,
-      postcode: (postcode == "") ? 0 : postcode,
-      role: 'donor',
-      state: (state == "") ? 0 : state,
-      businessemail: (businessemail == "") ? 0 : businessemail,
-      profileimg: imgpath,
-      profileimgname: imgname
-    };
-
-
-    const db = getDatabase(app);
-    const updates = {};
-    updates['/donors/' + userid] = postData;
-    update(ref(db), updates).then(() => {
-
-      $('#btnSave').prop('disabled', false);
-      $('.overlay').addClass('d-none');
-      $('#photo').val('');
-      alert('Data updated successfully!');
-      // window.location.href = "profile-donor.html";
-
-
-    })
-    .catch((error) => {
-        alert(error);
-        $('#btnSave').prop('disabled', false);
-        $('.overlay').addClass('d-none');
-    });
-
-}
-
-</script>
-
-
+    
 </body>
 </html>
