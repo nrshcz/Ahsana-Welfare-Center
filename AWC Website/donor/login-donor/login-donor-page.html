@@ -36,7 +36,8 @@
                   </div>
                   <input name="login" id="login" class="btn btn-block login-btn mb-4" type="button" value="Login">
                 </form>
-                <a href="#!" class="forgot-password-link">Forgot password?</a><br>
+                <!--<input type="text" name="" id="resetEmail"><br>-->
+                <a href="#!" class="forgot-password-link" id="reset">Forgot password?</a><br>
                 <p>Don't have an account? <a href="../register-donor/register-donor-page.html" class="text-reset">Register here</a></p>
                 <p>Are you Ahsana staff? <a href="../../admin/login-admin/login-admin-page.html" class="text-reset">Login here</a></p>
                 <nav class="login-card-footer-nav">
@@ -59,7 +60,7 @@
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
   import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
   // import { getDatabase } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
-  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
 
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
@@ -108,6 +109,25 @@ signInWithEmailAndPassword(auth, email1, password1)
   } )
 
   // login donor tested and done 
+
+  //Reset Password
+  let Reset = document.querySelector("#reset")
+
+  reset.addEventListener("click",function(){
+    let email = document.querySelector("#resetEmail")
+    const auth = getAuth();
+    sendPasswordResetEmail(auth,email.value)
+  .then(() => {
+    //Password reset email sent!
+    //
+    console.log("Reset Password Link Sent Through Email")
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+  });
+  });
+  
 
 </script>
 </html>

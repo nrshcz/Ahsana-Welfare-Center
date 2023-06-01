@@ -21,7 +21,7 @@ const firebaseConfig = {
   const auth = getAuth(app);
 
 //logout
-const logout = document.querySelector(#logout)
+const logout = document.querySelector("#logout")
 logout.addEventListener('click', (e) =>{
     e.preventDefault();
     Auth.signOut(),then(() => {
