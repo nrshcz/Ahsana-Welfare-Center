@@ -1,3 +1,4 @@
+// Clarify the variable
 let submit_data=document.getElementById("submit-data")
 let forgetEmail=document.querySelector(".forgetEmail")
 
@@ -22,18 +23,19 @@ const firebaseConfig = {
   // const database = getDatabase(app);
   const auth = getAuth(app);
 
+// Send the reset password link to the email
   submit_data.addEventListener("click",() => {
     sendPasswordResetEmail(auth, forgetEmail.value)
     .then(() => {
         forgetEmail="";
 
-        swal("Please check your email for resetting your password");
+        alert("Please check your email to reset your password");
     })
 
     .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
 
-        swal("Please enter the correct email");
+        alert("Please enter the correct email");
     });
   })
