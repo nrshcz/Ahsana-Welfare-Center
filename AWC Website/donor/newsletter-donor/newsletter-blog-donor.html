@@ -408,6 +408,7 @@
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
+        const auth = getAuth(app);
 
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
