@@ -32,6 +32,7 @@ const firebaseConfig = {
     })
 
     .catch((error) => {
+      // Send error message if any
         const errorCode = error.code;
         const errorMessage = error.message;
 
