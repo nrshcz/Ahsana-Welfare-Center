@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+ -->
 <head>
   <title>AWC donor profile</title>
   <meta charset="utf-8">
@@ -229,7 +229,7 @@
              <div class="tab-pane" id="donoraccount">
                
                <h2></h2>
-               <script src="./edit-pw-donor.js"></script>
+               <!-- <script src="./edit-pw-donor.js"></script> -->
                <hr>
                   <form class="form" action="##" method="post" id="registrationForm">
                     
@@ -339,7 +339,7 @@
     </div><!--/row-->
 
   
-    <script src="js/jquery.min.js"></script>
+   
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
@@ -347,7 +347,7 @@
         import { getDatabase, ref, child, onValue,  push, update, get  } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
         import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL, deleteObject} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-storage.js";
 
-        import { getAuth, onAuthStateChanged, EmailAuthProvider, updatePassword, reauthenticateWithCredential } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
+        import { getAuth, onAuthStateChanged , EmailAuthProvider, updatePassword, reauthenticateWithCredential } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
 
         // Your web app's Firebase configuration
         const firebaseConfig = {
@@ -360,20 +360,23 @@
           appId: "1:52579977535:web:d259c9b4952431c5daab8a"
         };
 
+
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const storage = getStorage(app);
         // const database = getDatabase(app);
         const auth = getAuth(app);
+        console.log(auth);
         var useremail = "";
         var userid = "";
         var imgpath = 0;
         var imgname = 0;
 
         onAuthStateChanged(auth, (user) => {
+          console.log(user);
           if (user) {
            
-          
+            
             const uid = user.uid;
             userid = user.uid;
             const db = getDatabase(app);

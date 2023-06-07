@@ -53,7 +53,7 @@
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="oi oi-menu"></span> Menu
 			</button>
-			<script type="module" src="/AWC Website/logout.js"></script>
+			<!-- <script type="module" src="/AWC Website/logout.js"></script> -->
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item active"><a href="homepage-donor.html" class="nav-link">Home</a></li>
@@ -789,7 +789,7 @@
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 		<script src="js/google-map.js"></script>
 		<script src="js/main.js"></script>
-		<script src="/AWC Website/logout.js"></script>
+		<!-- <script src="/AWC Website/logout.js"></script> -->
 		<script type="module">
 			  // Import the functions you need from the SDKs you need
 			  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
@@ -836,19 +836,19 @@
 
 				// User's Sign out
 
-				let logOut = document.getElementById("logout")
-				signOut(auth);
-				//Signing out user's
+				let logOut = document.getElementById("logout");
+				// signOut(auth);
+				// //Signing out user's
 				logOut.addEventListener("click", () => {
-					signOut(auth).then(() => {
-						alert("You have logged out");
-					// code for redirect user to Log-in page
-					window.location.href = "/Master%20Ahsana%20Welfare%20Center/Ahsana-Welfare-Center/AWC%20Website/homepage-main.html";
+						signOut(auth).then(() => {
+							alert("You have logged out");
+						// code for redirect user to Log-in page
+						window.location.href = "/Master%20Ahsana%20Welfare%20Center/Ahsana-Welfare-Center/AWC%20Website/homepage-main.html";
+					})
+					.catch((error) => {
+						console.log(error);
+					});  
 				})
-				.catch((error) => {
-					console.log(error);
-				});  
-			})
 
 		</script>
 		
