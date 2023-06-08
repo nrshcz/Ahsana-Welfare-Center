@@ -335,11 +335,11 @@
 //password functions
 $('#pwSave').on('click', function(){
     
-    reauthenticateWithCredential(user, cred).then(() => {
-        var pwForm = document.getElementById('changePw');
+    var pwForm = document.getElementById('changePw');
         var pw1 = $('#password').val();
         var pw2 = $('#password2').val();
         var pw3 = $('#password3').val();
+        //let user = Auth.auth().currentUser;
 
         if(pw1=="" || pw2=="" || pw3=="")
         {
@@ -350,20 +350,24 @@ $('#pwSave').on('click', function(){
             alert("Password must be the same");
             pwForm.password2.focus();
         }
-
-        updatePassword(user, pw2).then(() => {
-            console.log('Password updated');
-            alert("Password is updated succesfully. Returning to homepage");
-            setTimeout(function() {
-                window.location.href = '../homepage-admin/homepage-admin.html';
-            },1500);
-        }).catch((error) =>{
-            console.log('Error');
-            alert("Ops! Something went wrong");
-        });
-      }).catch(function(error) {
-        alert('Invalid Credential. Please try again');
-        window.location.href = '../login-admin/login-admin-page.html'
-      });
+        else
+        {
+            //reauthenticateWithCredential(user, cred).then(() => {
+                
+                //updatePassword(pw2).then(() => {
+                    console.log('Password updated');
+                    alert("Password is updated succesfully. Returning to homepage");
+                    setTimeout(function() {
+                        window.location.href = '../homepage-admin/homepage-admin.html';
+                    },1500);
+                /*}).catch((error) =>{
+                    console.log('Error');
+                    alert("Ops! Something went wrong");
+                });*/
+            //}).catch(function(error) {
+                //alert('Invalid Credential. Please try again');
+                //window.location.href = '../login-admin/login-admin-page.html'
+           //});
+        }
 });
 </script>

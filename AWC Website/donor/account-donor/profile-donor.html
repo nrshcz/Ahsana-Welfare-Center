@@ -662,6 +662,9 @@
 
         }
 
+        
+
+        $('#pwSave').on('click', function(){
         // password function
         var user = auth.currentUser;
         var cred = EmailAuthProvider.credential(
@@ -669,9 +672,6 @@
         password
         );
 
-        $('#pwSave').on('click', function(){
-
-        reauthenticateWithCredential(user, cred).then(() => {
             var pwForm = document.getElementById('changePw');
             var pw1 = $('#password').val();
             var pw2 = $('#password2').val();
@@ -686,7 +686,7 @@
                 alert("New Password must be the same with Verify Password");
                 pwForm.password2.focus();
             }
-
+            else{
             updatePassword(user, pw2).then(() => {
             
                 console.log('Password updated');
@@ -698,12 +698,9 @@
             }).catch((error) =>{
                 console.log('Error');
                 alert("Ops! Something went wrong");
-            });
-          }).catch(function(error) {
-            alert('Invalid Credential. Please try again');
-            window.location.href = '../login-donor/login-donor-page.html'
-          });
-        });
+            })
+          }
+      });
     </script>
 
     
