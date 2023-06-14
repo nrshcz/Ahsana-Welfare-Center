@@ -297,7 +297,44 @@
        
      }
 
-     
+     $(dataArr).each(function(){
+
+
+      card += `<div class="col-12 col-md-6 col-lg-3">
+                  <div class="volunteer">
+                       <div class="img" style="background-image: url(${this.imgurl});"></div>
+                       <div class="text text-1">
+                        <h3>${this.name}</h3>
+                      </div>
+                  </div>
+                 
+               </div>`;
+
+
+
+
+  });
+
+  $('#resident-content').html(card);
+
+
+});
+
+// User's Sign out
+
+let logOut = document.getElementById("logout")
+// signOut(auth);
+//Signing out user's
+logOut.addEventListener("click", () => {
+signOut(auth).then(() => {
+  // code for redirect user to Log-in page
+  window.location.href = "/Master%20Ahsana%20Welfare%20Center/Ahsana-Welfare-Center/AWC%20Website/homepage-main.html";
+})
+.catch((error) => {
+  console.log(error);
+});  
+})
+
 </script>
 
 </body>
