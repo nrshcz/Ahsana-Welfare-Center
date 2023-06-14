@@ -112,7 +112,93 @@
         const db = getDatabase(app);
         const storage = getStorage(app);
 
-      
+        document.getElementById("upload").addEventListener('click',  function(){
+
+          var checkEmpty = 0;
+          var file = document.querySelector("#photo").files[0];
+          var rname = $('#residentname').val();
+
+    
+          if(rname == '' || file == undefined){
+              checkEmpty = 1;
+          }
+
+          if(checkEmpty == 1){
+             alert('Please fill in blank field');
+             return;
+          }
+       
+          $('#upload').prop('disabled', true);
+          $('#upload').addClass('d-none');
+          const name = +new Date() + "-" + file.name;
+          const metadata = {
+             contentType: 'image/*',
+          };
+
+          const storageRef = sRef(storage, 'residents/' + name);
+          const uploadTask = uploadBytesResumable(storageRef, file, metadata);
+
+          uploadTask.on('state_changed',
+            (snapshot) => {
+              // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+              const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+              console.log('Upload is ' + progress + '% done');
+              switch (snapshot.state) {
+                case 'paused':
+                  console.log('Upload is paused');
+                  break;
+                case 'running':
+                  console.log('Upload is running');
+                  break;
+              }
+            }, 
+            (error) => {
+              // A full list of error codes is available at
+              // https://firebase.google.com/docs/storage/web/handle-errors
+              switch (error.code) {
+                case 'storage/unauthorized':
+                  // User doesn't have permission to access the object
+                  break;
+                case 'storage/canceled':
+                  // User canceled the upload
+                  break;
+
+                // ...
+
+                case 'storage/unknown':
+                  // Unknown error occurred, inspect error.serverResponse
+                  break;
+              }
+            }, 
+            () => {
+              // Upload completed successfully, now we can get the download URL
+              getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                    const postData = {
+                      residentname: rname,
+                      imgUrl: downloadURL,
+                      imgname: name
+                    };
+                    const newPostKey = push(child(ref(db), 'residents')).key;
+                    const updates = {};
+                    updates['/residents/' + newPostKey] = postData;
+                    update(ref(db), updates).then(() => {
+                      // Data saved successfully!
+                      alert('Data saved successfully!');
+                      window.location.href = "ahsana-residents-admin.html";
+
+                    })
+                    .catch((error) => {
+                        alert(error);
+                         $('#upload').prop('disabled', false);
+                         $('#upload').removeClass('d-none');
+                    });
+
+              });
+            }
+          );
+
+
+       });
 
 
 
