@@ -381,7 +381,23 @@ import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/fi
            var imgname = $(this).children('input').val();
 
 
-          
+           if (confirm("Do confirm to delete?") == true) {
+            const dbRef = ref(db, "/residents/" + id);
+            remove(dbRef).then(() => alert("Deleted Successfully"))
+
+            const desertRef = sRef(storage, `residents/${imgname}`);
+            // Delete the file
+            deleteObject(desertRef).then(() => {
+              // File deleted successfully
+            }).catch((error) => {
+              // Uh-oh, an error occurred!
+              console.log(error);
+            });
+
+
+      } else {
+         
+      }
      });
 
  });
