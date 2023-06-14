@@ -271,7 +271,33 @@
  const auth = getAuth(app);
 
 
- 
+ const starCountRef = ref(db, 'residents');
+ onValue(starCountRef, (snapshot) => {
+     const data = snapshot.val();
+     var card = "";
+     var dataArr = [];
+     
+     if(data == null){
+         card += `<div>
+                     No Resident Yet
+               </div>`;
+         $('#resident-content').html(card);
+         return;
+     }
+
+     for (const [key, value] of Object.entries(data)) {
+
+         var rData = data[key];
+   
+         var residentname = rData.residentname;
+         var imgurl = rData.imgUrl;
+         var imgname = rData.imgname;
+
+         dataArr.push({'id': key, 'name': residentname, 'imgurl': imgurl,  'imgname': imgname });
+       
+     }
+
+     
 </script>
 
 </body>
