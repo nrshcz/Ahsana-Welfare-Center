@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List</title>
+</head>
+<style>
+    .donor-list {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+    }
+
+    .donor-list li {
+        margin-bottom: 10px;
+    }
+
+    .donor-firstname {
+        font-weight: bold;
+    }
+
+    .donor-details {
+        color: #888;
+    }
+</style>
+<body>
+    <div id="donor-list"></div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+			    apiKey: "AIzaSyAnRXDaONlj8ebUzJh-8veX1GtgI9IF3Hs",
+			    authDomain: "ahsana-welfare-center-52143.firebaseapp.com",
+			    databaseURL: "https://ahsana-welfare-center-52143-default-rtdb.firebaseio.com",
+			    projectId: "ahsana-welfare-center-52143",
+			    storageBucket: "ahsana-welfare-center-52143.appspot.com",
+			    messagingSenderId: "52579977535",
+			    appId: "1:52579977535:web:d259c9b4952431c5daab8a"
+			  };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        // Get a reference to the donors node in your Firebase database
+        const donorsRef = ref(database, 'donors');
+
+        // Retrieve the donor data
+        onValue(donorsRef, (snapshot) => {
+            const donorsSnapshot = snapshot.val();
+
+            // Generate the HTML list
+            const listContainer = document.getElementById('donor-list');
+            let listHTML = '<ol class="donor-list">';
+
+            // Counter for numbering the list items
+            let counter = 1;
+
+            // Loop through each donor and add it to the HTML list
+            for (const donorKey in donorsSnapshot) {
+                if (Object.hasOwnProperty.call(donorsSnapshot, donorKey)) {
+                    const donor = donorsSnapshot[donorKey];
+                    listHTML += '<li><span class="donor-firstname">' + donor.firstname + ' ' + donor.lastname + '</span> - <span class="donor-details">' + donor.email + ' - ' + donor.amount + '</span></li>';
+                }
+            }
+
+            listHTML += '</ol>';
+            listContainer.innerHTML = listHTML;
+        });
+    </script>
+
+</body>
+</html>
