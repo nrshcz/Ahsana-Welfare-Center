@@ -1,30 +1,24 @@
-import { initializeApp as _initializeApp, credential as __credential } from 'firebase-admin';
+import * as admin from 'firebase-admin';
 import nodemailer from 'nodemailer';
 import serviceAccount from './path/to/serviceAccountKey.json';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAnRXDaONlj8ebUzJh-8veX1GtgI9IF3Hs",
-    authDomain: "ahsana-welfare-center-52143.firebaseapp.com",
-    databaseURL: "https://ahsana-welfare-center-52143-default-rtdb.firebaseio.com",
-    projectId: "ahsana-welfare-center-52143",
-    storageBucket: "ahsana-welfare-center-52143.appspot.com",
-    messagingSenderId: "52579977535",
-    appId: "1:52579977535:web:d259c9b4952431c5daab8a"
+  apiKey: "AIzaSyAnRXDaONlj8ebUzJh-8veX1GtgI9IF3Hs",
+  authDomain: "ahsana-welfare-center-52143.firebaseapp.com",
+  databaseURL: "https://ahsana-welfare-center-52143-default-rtdb.firebaseio.com",
+  projectId: "ahsana-welfare-center-52143",
+  storageBucket: "ahsana-welfare-center-52143.appspot.com",
+  messagingSenderId: "52579977535",
+  appId: "1:52579977535:web:d259c9b4952431c5daab8a"
 };
 
-_initializeApp({
-  credential: __credential.cert(serviceAccountKey),
-  databaseURL: firebaseConfig.databaseURL,
-});
-
-// Initialize Firebase Admin SDK
-_initializeApp({
-  credential: __credential.cert(serviceAccount),
-  databaseURL: 'https://1:52579977535:web:d259c9b4952431c5daab8a.firebaseio.com'
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://ahsana-welfare-center-52143-default-rtdb.firebaseio.com"
 });
 
 // Initialize Nodemailer transporter
-const transporter = createTransport({
+const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: 'ahsanastaff.info@gmail.com',
@@ -51,7 +45,7 @@ async function sendReceiptEmail(email, amount) {
 
 // Function to store donation data in Firebase
 function storeDonationData(email, amount) {
-  const database = database();
+  const database = admin.database();
   const donationsRef = database.ref('donations');
 
   const newDonationRef = donationsRef.push();
@@ -70,6 +64,6 @@ function storeDonationData(email, amount) {
 
 // Example usage
 const email = 'user@example.com';
-const donationAmount = 100;
+const donationAmount = 1000;
 
 storeDonationData(email, donationAmount);
