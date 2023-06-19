@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
   <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+  <script>document.getElementsByTagName("html")[0].className += " js";</script>
+  <link rel="stylesheet" href="css/style_cart.css">
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   
@@ -94,7 +96,7 @@
            <div class="progress-bar progress-bar-striped" style="width:70%; height:20px">70%</div>
          </div>
        </div>
-       <p><a href="#" class="btn btn-light w-100">Donate Now</a></p>
+       <p><a href="#0" class="btn btn-light w-100 cd-add-to-cart js-cd-add-to-cart">Donate Now</a></p>
      </div>
    </div>
  </div>
@@ -110,7 +112,7 @@
          <div class="progress-bar progress-bar-striped" style="width:82%; height:20px">82%</div>
        </div>
      </div>
-     <p><a href="#" class="btn btn-light w-100">Donate Now</a></p>
+     <p><a href="#0" class="btn btn-light w-100 cd-add-to-cart js-cd-add-to-cart">Donate Now</a></p>
    </div>
  </div>
 </div>
@@ -126,7 +128,7 @@
          <div class="progress-bar progress-bar-striped" style="width:95%; height:20px">95%</div>
        </div>
      </div>
-     <p><a href="#" class="btn btn-light w-100">Donate Now</a></p>
+     <p><a href="#0" class="btn btn-light w-100 cd-add-to-cart js-cd-add-to-cart">Donate Now</a></p>
    </div>
  </div>
 </div>
@@ -143,7 +145,7 @@
          <div class="progress-bar progress-bar-striped" style="width:75%; height:20px">75%</div>
        </div>
      </div>
-     <p><a href="#" class="btn btn-light w-100">Donate Now</a></p>
+     <p><a href="#0" class="btn btn-light w-100 cd-add-to-cart js-cd-add-to-cart">Donate Now</a></p>
    </div>
  </div>
 </div>
@@ -160,7 +162,7 @@
          <div class="progress-bar progress-bar-striped" style="width:70%; height:20px">70%</div>
        </div>
      </div>
-     <p><a href="#" class="btn btn-light w-100">Donate Now</a></p>
+     <p><a href="#0" class="btn btn-light w-100 cd-add-to-cart js-cd-add-to-cart">Donate Now</a></p>
    </div>
  </div>
 </div>
@@ -176,7 +178,7 @@
          <div class="progress-bar progress-bar-striped" style="width:82%; height:20px">82%</div>
        </div>
      </div>
-     <p><a href="#" class="btn btn-light w-100">Donate Now</a></p>
+     <p><a href="#0" class="btn btn-light w-100 cd-add-to-cart js-cd-add-to-cart">Donate Now</a></p>
    </div>
  </div>
 </div>
@@ -192,7 +194,7 @@
          <div class="progress-bar progress-bar-striped" style="width:95%; height:20px">95%</div>
        </div>
      </div>
-     <p><a href="#" class="btn btn-light w-100">Donate Now</a></p>
+     <p><a href="#0" class="btn btn-light w-100 cd-add-to-cart js-cd-add-to-cart">Donate Now</a></p>
    </div>
  </div>
 </div>
@@ -208,7 +210,7 @@
          <div class="progress-bar progress-bar-striped" style="width:75%; height:20px">75%</div>
        </div>
      </div>
-     <p><a href="#" class="btn btn-light w-100">Donate Now</a></p>
+     <p><a href="#0" class="btn btn-light w-100 cd-add-to-cart js-cd-add-to-cart">Donate Now</a></p>
    </div>
  </div>
 </div>
@@ -220,19 +222,46 @@
       <ul>
         <li><a href="#">&lt;</a></li>
         <li class="active"><span>1</span></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li><a href="#">&gt;</a></li>
       </ul>
     </div>
   </div>
 </div>
 </div>
 </section>
+<!--cart-->
+<div class="cd-cart cd-cart--empty js-cd-cart">
+	<a href="#0" class="cd-cart__trigger text-replace">
+		<ul class="cd-cart__count"> <!-- cart items count -->
+			<li>0</li>
+			<li>0</li>
+		</ul> <!-- .cd-cart__count -->
+	</a>
 
+	<div class="cd-cart__content">
+		<div class="cd-cart__layout">
+			<header class="cd-cart__header">
+				<h2>Cart</h2>
+				<span class="cd-cart__undo">Item removed. <a href="#0">Undo</a></span>
+			</header>
+			
+			<div class="cd-cart__body">
+				<ul>
+					<!-- products added to the cart will be inserted here using JavaScript -->
+				</ul>
+			</div>
 
+			<footer class="cd-cart__footer">
+				<a href="#0" class="cd-cart__checkout" onclick="checkout()">
+          <em>Checkout - RM<span>10</span>
+            <svg class="icon icon--sm" viewBox="0 0 24 24"><g fill="none" stroke="currentColor"><line stroke-width="2" stroke-linecap="round" stroke-linejoin="round" x1="3" y1="12" x2="21" y2="12"/><polyline stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="15,6 21,12 15,18 "/></g>
+            </svg>
+          </em>
+        </a>
+			</footer>
+		</div>
+	</div> <!-- .cd-cart__content -->
+</div> <!-- cd-cart -->
+<!--cart-->
 <footer class="footer">
  <div class="container">
   <div class="row">
@@ -284,7 +313,8 @@
 <!-- loader -->
 <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
-
+<script src="js/util_cart.js"></script> 
+<script src="js/main_cart.js"></script> 
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery-migrate-3.0.1.min.js"></script>
 <script src="js/popper.min.js"></script>
@@ -303,4 +333,10 @@
 <script src="js/main.js"></script>
 
 </body>
+
+<script>
+  function checkout(){
+    window.location.href="../donation-donor/donation-payment.html";
+  };
+</script>
 </html>
