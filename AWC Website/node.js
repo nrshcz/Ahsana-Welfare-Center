@@ -63,7 +63,7 @@ function storeDonationData(email, amount) {
 }
 
 // Example usage
-const email = 'user@example.com';
+const email = 'saidahsaiful2201@gmail.com';
 const donationAmount = 1000;
 
 storeDonationData(email, donationAmount);
