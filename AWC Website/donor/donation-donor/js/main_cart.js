@@ -1,5 +1,4 @@
 (function(){
-  
   var cart = document.getElementsByClassName('js-cd-cart');
   if(cart.length > 0) {
   	var cartAddBtns = document.getElementsByClassName('js-cd-add-to-cart'),
