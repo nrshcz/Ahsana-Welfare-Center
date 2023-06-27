@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 
 <head>
   <title>AWC admin's profile</title>
@@ -12,9 +12,80 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style type="text/css">
+    .overlay {
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        z-index: 99;
+        background: rgba(0,0,0,0.8);
+    }
+
+    .overlay__inner {
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
+
+    .overlay__content {
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .spinner {
+        width: 75px;
+        height: 75px;
+        display: inline-block;
+        border-width: 2px;
+        border-color: rgba(255, 255, 255, 0.05);
+        border-top-color: #fff;
+        animation: spin 1s infinite linear;
+        border-radius: 100%;
+        border-style: solid;
+    }
+
+    @keyframes spin {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .d-none{
+      display: none;
+    }
+    .profileBox{
+      position: relative;
+    }
+
+    .profileBox .btnRemove{
+        width: fit-content;
+        background: #D60B00;
+        color: #ffffff;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 6px;
+        padding: 5px 10px;
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+        z-index: 2;
+        cursor: pointer;
+    }
+  </style>
 </head>
 <body>
 <hr>
+<div class="overlay">
+    <div class="overlay__inner">
+        <div class="overlay__content"><span class="spinner"></span></div>
+    </div>
+</div>
 <div class="container bootstrap snippet">
     <div class="row">
   		<div class="col-sm-10"><h1>Admin's Profile</h1></div>
@@ -27,7 +98,7 @@
       <div class="text-center">
         <img src="prop2.jpg" class="avatar img-circle img-thumbnail" alt="avatar">
         <h6>Profile Picture</h6>
-        <input type="file" class="text-center center-block file-upload">
+        <!-- <input type="file" class="text-center center-block file-upload"> -->
       </div></hr><br>
 
           <div class="panel panel-default">
@@ -63,81 +134,105 @@
           <div class="tab-content">
             <div class="tab-pane active" id="home">
                 <hr>
-                  <form class="form" action="##" method="post" id="registrationForm">
+                 <form class="form" action="##" method="post" id="registrationForm">
+
+
+                      <input type="hidden" id="oldurl" />
+                      <input type="hidden" id="oldname" />
                       <div class="form-group">
                           
                           <div class="col-xs-6">
                               <label for="first_name"><h4>First name</h4></label>
-                              <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any.">
+                              <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any." disabled>
                           </div>
                       </div>
                       <div class="form-group">
                           
                           <div class="col-xs-6">
                             <label for="last_name"><h4>Last name</h4></label>
-                              <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any.">
-                          </div>
+                              <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any." disabled>
+                          </div> 
                       </div>
           
                       <div class="form-group">
                           
                           <div class="col-xs-6">
                               <label for="phone"><h4>Phone Number</h4></label>
-                              <input type="number" class="form-control" name="phone" id="phone" placeholder="phone number" title="enter your phone number if any.">
+                              <input type="text" class="form-control" name="phone" id="phone" placeholder="phone number" title="enter your phone number if any." disabled>
                           </div>
                       </div>
           
                       <div class="form-group">
                           <div class="col-xs-6">
                              <label for="date"><h4>Date of Birth</h4></label>
-                              <input type="date" class="form-control" name="date of birth" id="birthday date" placeholder="enter date of birth" title="enter your date of birth.">
+                              <input type="date" class="form-control" name="date of birth" id="dob" placeholder="enter date of birth" title="enter your date of birth." disabled>
                           </div>
                       </div>
                       <div class="form-group">
                           
                           <div class="col-xs-6">
                               <label for="email"><h4>Email</h4></label>
-                              <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
+                              <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email." disabled>
                           </div>
                       </div>
                       <div class="form-group">
                           
                           <div class="col-xs-6">
-                              <label for="gender"><h4>Gender</h4></label>
-                              <input type="text" class="form-control" id="gender" placeholder="gender" title="enter your gender">
+                              <label for="gender"><h4>Gender</h4></label> 
+                              <!-- <input type="text" class="form-control" id="gender" placeholder="gender" title="enter your gender"> -->
+                              <select name="gender" id="gender" class="form-control" disabled>
+                                  <option value="male">Male</option>
+                                  <option value="female">Female</option>
+                              </select>
+                              <!-- gender cannot be changed -->
                           </div>
                       </div>
-                      <!--
-                        <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="password"><h4>Password</h4></label>
-                              <input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password.">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                            <label for="password2"><h4>Verify</h4></label>
-                              <input type="password" class="form-control" name="password2" id="password2" placeholder="password2" title="enter your password2.">
-                          </div>
-                      </div>
-                    -->
-                      <div class="form-group">
+
+                      <div class="form-group d-none">
                           
                         <div class="col-xs-12">
-                            <label for="email"><h4>Address</h4></label>
-                            <input type="email" class="form-control" id="address" placeholder="address" title="enter your address">
+                            <label for="businessemail"><h4>Business Email</h4></label>
+                            <input type="email" class="form-control" id="businessemail" placeholder="Business Email" title="enter your business email" disabled>
+                        </div>
+
+                      </div>
+                     
+                    <div class="form-group">
+                          
+                        <div class="col-xs-12">
+                            <label for="address"><h4>Address</h4></label>
+                            <input type="text" class="form-control" id="address" placeholder="address" title="enter your address" disabled>
                         </div>
                     </div>
-                      <div class="form-group">
+                    <div class="form-group">
+                          
+                        <div class="col-xs-12">
+                            <label for="city"><h4>City</h4></label>
+                            <input type="text" class="form-control" id="city" placeholder="city" title="enter your city" disabled>
+                        </div>
+                    </div>
+                     <div class="form-group">
+                          
+                        <div class="col-xs-12">
+                            <label for="state"><h4>state</h4></label>
+                            <input type="text" class="form-control" id="state" placeholder="state" title="enter your state" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                          
+                        <div class="col-xs-12">
+                            <label for="postcode"><h4>Postcode</h4></label>
+                            <input type="text" class="form-control" id="postcode" placeholder="postcode" title="enter your postcode" disabled>
+                        </div>
+                    </div>
+                      <!-- <div class="form-group">
                            <div class="col-xs-12">
                                 <br>
-                              	<button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                               	<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                                <button class="btn btn-lg btn-success" type="button" id="btnSave"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                                <button class="btn btn-lg" type="button" id="btn-reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
                             </div>
-                      </div>
-              	</form>
+                      </div> -->
+                </form>
               
               <hr>
               
@@ -228,75 +323,7 @@
              </div><!--/tab-pane-->
              <div class="tab-pane" id="settings">
             		
-               	
-                  <hr>
-                  <form class="form" action="##" method="post" id="registrationForm">
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="first_name"><h4>First name</h4></label>
-                              <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any.">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                            <label for="last_name"><h4>Last name</h4></label>
-                              <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any.">
-                          </div>
-                      </div>
-          
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="phone"><h4>Phone</h4></label>
-                              <input type="text" class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number if any.">
-                          </div>
-                      </div>
-          
-                      <div class="form-group">
-                          <div class="col-xs-6">
-                             <label for="mobile"><h4>Mobile</h4></label>
-                              <input type="text" class="form-control" name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any.">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="email"><h4>Email</h4></label>
-                              <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="email"><h4>Location</h4></label>
-                              <input type="email" class="form-control" id="location" placeholder="somewhere" title="enter a location">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="password"><h4>Password</h4></label>
-                              <input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password.">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                            <label for="password2"><h4>Verify</h4></label>
-                              <input type="password" class="form-control" name="password2" id="password2" placeholder="password2" title="enter your password2.">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                           <div class="col-xs-12">
-                                <br>
-                              	<button class="btn btn-lg btn-success pull-right" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                               	<!--<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>-->
-                            </div>
-                      </div>
-              	</form>
-              </div>
+               </div>
                
               </div><!--/tab-pane-->
           </div><!--/tab-content-->
@@ -308,8 +335,10 @@
 <script src="js/jquery.min.js"></script>
 <script type = "module">
     // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-    import { getAuth, updatePassword, reauthenticateWithCredential, EmailAuthProvider } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+    import { getDatabase, ref, child, onValue,  push, update, get  } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
+    import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL, deleteObject} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-storage.js";
+    import { getAuth, onAuthStateChanged, updatePassword, reauthenticateWithCredential, EmailAuthProvider } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -329,45 +358,168 @@
     const auth = getAuth(app);
     var user = auth.currentUser;
     var cred = EmailAuthProvider.credential(
-    email, 
-    password
+      email, 
+      password
     );
-//password functions
-$('#pwSave').on('click', function(){
-    
-    var pwForm = document.getElementById('changePw');
-        var pw1 = $('#password').val();
-        var pw2 = $('#password2').val();
-        var pw3 = $('#password3').val();
-        //let user = Auth.auth().currentUser;
 
-        if(pw1=="" || pw2=="" || pw3=="")
-        {
-            alert("All fields must be filled in");
-        }
-        else if(pw2 != pw3)
-        {
-            alert("Password must be the same");
-            pwForm.password2.focus();
-        }
-        else
-        {
-            //reauthenticateWithCredential(user, cred).then(() => {
+    var useremail = "";
+    var userid = "";
+    var imgpath = 0;
+    var imgname = 0;
+
+    onAuthStateChanged(auth, (user) => {
+          console.log(user);
+          if (user) {
+           
+            const uid = user.uid;
+            userid = user.uid;
+            const db = getDatabase(app);
+            const refData = ref(db, 'admins/' + uid);
+              onValue(refData, (snapshot) => {
+                const data = snapshot.val();
+                console.log(data);
+
+                if(data.firstname !== 0){
+                    $('#first_name').val(data.firstname);
+                }else{
+                    $('#first_name').val('');
+                }
                 
-                //updatePassword(pw2).then(() => {
-                    console.log('Password updated');
-                    alert("Password is updated succesfully. Returning to homepage");
-                    setTimeout(function() {
-                        window.location.href = '../homepage-admin/homepage-admin.html';
-                    },1500);
-                /*}).catch((error) =>{
-                    console.log('Error');
-                    alert("Ops! Something went wrong");
-                });*/
-            //}).catch(function(error) {
-                //alert('Invalid Credential. Please try again');
-                //window.location.href = '../login-admin/login-admin-page.html'
-           //});
-        }
-});
+                if(data.lastname !== 0){
+                    $('#last_name').val(data.lastname);
+                }else{
+                    $('#last_name').val('');
+                }
+
+                if(data.address !== 0){
+                    $('#address').val(data.address);
+                }else{
+                    $('#address').val('');
+                }
+                
+                if(data.phone !== 0){
+                    $('#phone').val(data.phone);
+                }else{
+                    $('#phone').val('');
+                }
+                
+                if(data.birth_date !== 0){
+                    $('#dob').val(data.birth_date);
+                }else{
+                    $('#dob').val('');
+                }
+
+                if(data.email !== 0){
+                    $('#email').val(data.email);
+                }else{
+                    $('#email').val('');
+                }
+                useremail = data.email;
+
+                if(data.gender !== 0){
+                    $('#gender').val(data.gender).change();
+                }else{
+                    $('#gender').val('');
+                }
+               
+                if(data.city !== 0){
+                    $('#city').val(data.city);
+                }else{
+                    $('#city').val('');
+                }
+
+                if(data.postcode !== 0){
+                    $('#postcode').val(data.postcode);
+                }else{
+                    $('#postcode').val('');
+                }
+              
+                if(data.state !== 0){
+                    $('#state').val(data.state);
+                }else{
+                    $('#state').val('');
+                }
+   
+                if(data.businessemail !== 0){
+                    $('#businessemail').val(data.businessemail);
+                }else{
+                    $('#businessemail').val('');
+                }
+
+                $('#oldurl').val(data.profileimg);
+                $('#oldname').val(data.profileimgname);
+                if(data.profileimg != 0){
+                   $('.avatar').attr('src', data.profileimg);
+                   $('.btnRemove').removeClass('d-none');
+                }else{
+                   $('.avatar').attr('src', 'prop2.png');
+                   $('.btnRemove').addClass('d-none');
+                }
+
+            });
+
+            setTimeout(function greet() {
+              $('.overlay').addClass('d-none');
+            }, 1500);
+
+      
+
+          } else {
+            // User is signed out
+            // ...
+             // alert('Please login first');
+             // window.location.href = '../login-donor/login-donor-page.html';
+             // console.log('donor is logout');
+
+          }
+        });
+  //password functions
+  $('#pwSave').on('click', function(){
+      
+      var pwForm = document.getElementById('changePw');
+          var pw1 = $('#password').val();
+          var pw2 = $('#password2').val();
+          var pw3 = $('#password3').val();
+          //let user = Auth.auth().currentUser;
+
+          if(pw1=="" || pw2=="" || pw3=="")
+          {
+              alert("All fields must be filled in");
+          }
+          else if(pw2 != pw3)
+          {
+              alert("Password must be the same");
+              pwForm.password2.focus();
+          }
+          else
+          {
+              //reauthenticateWithCredential(user, cred).then(() => {
+                  
+                  //updatePassword(pw2).then(() => {
+                      console.log('Password updated');
+                      alert("Password is updated succesfully. Returning to homepage");
+                      setTimeout(function() {
+                          window.location.href = '../homepage-admin/homepage-admin.html';
+                      },1500);
+                  /*}).catch((error) =>{
+                      console.log('Error');
+                      alert("Ops! Something went wrong");
+                  });*/
+              //}).catch(function(error) {
+                  //alert('Invalid Credential. Please try again');
+                  //window.location.href = '../login-admin/login-admin-page.html'
+             //});
+          }
+  });
+
+// User's Sign out
+// let logOut = document.getElementById("logout")
+// logOut.addEventListener("click", () => {
+//   signOut(auth).then(() => {
+//     window.location.href = "../login-admin/login-admin-page.html";
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });  
+// });
 </script>

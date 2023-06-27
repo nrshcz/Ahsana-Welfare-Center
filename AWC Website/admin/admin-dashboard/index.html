@@ -463,20 +463,15 @@ const firebaseConfig = {
 
 
   // User's Sign out
-
   let logOut = document.getElementById("logout")
-  signOut(auth);
-  //Signing out user's
   logOut.addEventListener("click", () => {
-      signOut(auth).then(() => {
-        alert("You have logged out");
-      // code for redirect user to Log-in page
-      window.location.href = "/Master%20Ahsana%20Welfare%20Center/Ahsana-Welfare-Center/AWC%20Website/homepage-main.html";
-  })
-  .catch((error) => {
+    signOut(auth).then(() => {
+      window.location.href = "../login-admin/login-admin-page.html";
+    })
+    .catch((error) => {
       console.log(error);
-  });  
-})
+    });  
+  })
   </script>
 </body>
 

@@ -834,21 +834,17 @@
 				  }
 				});
 
-				// User's Sign out
-
-				let logOut = document.getElementById("logout");
-				// signOut(auth);
-				// //Signing out user's
-				logOut.addEventListener("click", () => {
-						signOut(auth).then(() => {
-							alert("You have logged out");
-						// code for redirect user to Log-in page
-						window.location.href = "../homepage-main.html";
-					})
-					.catch((error) => {
-						console.log(error);
-					});  
-				})
+				 // User's Sign out
+		        let logOut = document.getElementById("logout")
+		        logOut.addEventListener("click", () => {
+		          signOut(auth).then(() => {
+		            // code for redirect user to Log-in page
+		            window.location.href = "../login-donor/login-donor-page.html";
+		          })
+		          .catch((error) => {
+		            console.log(error);
+		          });  
+		        })
 
 		</script>
 		

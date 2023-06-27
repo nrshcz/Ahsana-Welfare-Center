@@ -23,7 +23,7 @@ const firebaseConfig = {
   // User's Sign out
 
   let logOut = document.getElementById("logout")
-  signOut(auth);
+  // signOut(auth);
   //Signing out user's
   logOut.addEventListener("click", () => {
       signOut(auth).then(() => {
